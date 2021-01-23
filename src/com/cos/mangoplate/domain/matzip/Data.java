@@ -1,7 +1,7 @@
 
-package com.cos.mangoplate.domain.dto;
+package com.cos.mangoplate.domain.matzip;
 
-import com.cos.mangoplate.domain.GetFoodKr;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

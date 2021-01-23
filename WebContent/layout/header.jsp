@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,7 +12,7 @@
     <meta name="description" content="#">
     <meta name="keywords" content="#">
     <!-- Page Title -->
-    <title>망고플레이트</title>
+    <title>Listing &amp; Directory Website Template</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!-- Google Fonts -->
@@ -30,14 +31,12 @@
     <link rel="stylesheet" href="../css/style.css">
     <!-- Swipper Slider -->
     <link rel="stylesheet" href="../css/swiper.min.css">
-     <!-- Swipper css -->
-    <link rel="stylesheet" href="../css/swiper.css">
     <!-- 제이쿼리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- 마테리얼 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+
 
 <body>
 
@@ -51,7 +50,7 @@
                     <div class="col-md-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
                             <a class="navbar-brand" href="">
-                                <img src="../images/logo.png" alt="로고" style="width: 100px; height: 50px;" />
+                                <img src="../images/logo.png" alt="img13" style="width: 100px; height: 50px;" />
 
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -84,4 +83,3 @@
     </div>
 
     <!--//END HEADER -->
-

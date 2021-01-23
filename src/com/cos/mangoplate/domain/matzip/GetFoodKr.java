@@ -1,4 +1,4 @@
-package com.cos.mangoplate.domain;
+package com.cos.mangoplate.domain.matzip;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
