@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
  .m-swiper-container {
         position: relative;
     }
@@ -18,18 +16,21 @@
     .swiper-button-next:hover {
         -webkit-transform: translateX(0);
         transform: translateX(0);
-        opacity: 1;
+        opacity: 0.5;
         visibility: visible;
     }
 
     .swiper-pagination {
-        margin-top: 40px;
-        margin-left: 550px;
+        position: absolute;
+        margin-top: 20px;
+        /* margin-left: 550px; */
+        left: 50%;
     }
 
     .swiper-pagination-bullet {
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
+        margin: 5px;
         text-align: center;
         color: #000;
         opacity: 1;

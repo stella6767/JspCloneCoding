@@ -1,9 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
+<!DOCTYPE html>
+<html lang="en">
 
- <!-- SLIDER -->
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Colorlib">
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <!-- Page Title -->
+    <title>Listing &amp; Directory Website Template</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <!-- Simple line Icon -->
+    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="#">
+    <!-- Magnific Popup CSS -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- Themify Icon -->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Hover Effects -->
+    <link rel="stylesheet" href="css/set1.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Swipper Slider -->
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <!-- 제이쿼리 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- 마테리얼 아이콘 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<style>
+    .m-swiper-container {
+        position: relative;
+    }
+
+    .swiper-button-prev {
+        position: absolute;
+        left: -80px;
+    }
+
+    .swiper-button-next {
+        position: absolute;
+        right: -80px;
+    }
+
+    .swiper-button-prev:hover,
+    .swiper-button-next:hover {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 0.5;
+        visibility: visible;
+    }
+
+    .swiper-pagination {
+        position: absolute;
+        margin-top: 20px;
+        /* margin-left: 550px; */
+        left: 50%;
+    }
+
+    .swiper-pagination-bullet {
+        width: 10px;
+        height: 10px;
+        margin: 5px;
+        text-align: center;
+        color: #000;
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .swiper-pagination-bullet-active {
+        color: #fff;
+        background: #007aff;
+    }
+</style>
+
+
+<body>
+
+
+    <!--============================= HEADER =============================-->
+    <div class="nav-menu" id="header">
+
+        <div class="bg transition">
+            <div class="container-fluid fixed">
+                <div class="row">
+                    <div class="col-md-12" id="SearchForm">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="">
+                                <img src="images/logo.png" alt="img13" style="width: 100px; height: 40px;" />
+
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="icon-menu"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">EAT딜</a>
+                                    </li>
+
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="#">맛집리스트</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">망고 스토리</a>
+                                    </li>
+                                    <li> <i class="large material-icons text-white md-48 m-circle">account_circle</i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!--//END HEADER -->
+
+    <!-- SLIDER -->
     <section class="slider d-flex align-items-center container-fluid">
-        <!-- <img src="../images/slider.jpg" class="img-box" alt="#"> -->
+        <!-- <img src="images/slider.jpg" class="img-box" alt="#"> -->
         <div class="container">
             <div class="row d-flex justify-content-center" style="margin-bottom: 100px;">
                 <div class="col-md-12">
@@ -37,10 +164,10 @@
             </div>
             <div class="slider-link d-flex justify-content-between" style="margin-bottom: -100px;">
                 <div>
-                    <img src="../images/EAT딜.png" alt="img13" style="width: 300px; height: 50px;" />
+                    <img src="images/EAT딜.png" alt="img13" style="width: 300px; height: 50px;" />
                 </div>
                 <div>
-                    <img src="../images/AppStore.png" alt="img13" style="" />
+                    <img src="images/AppStore.png" alt="img13" style="" />
                 </div>
             </div>
         </div>
@@ -59,7 +186,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -73,7 +200,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -86,7 +213,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -99,7 +226,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -112,7 +239,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -125,7 +252,7 @@
                     <div class="find-place-img_wrap">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box" alt="img13" />
+                                <img src="images/featured1.jpg" class="img-box" alt="img13" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -160,7 +287,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -171,7 +298,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -182,7 +309,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -196,7 +323,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -207,7 +334,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -218,7 +345,7 @@
                     <div class="swiper-slide">
                         <div class="grid">
                             <figure class="effect-ruby">
-                                <img src="../images/featured1.jpg" class="img-box2" />
+                                <img src="images/featured1.jpg" class="img-box2" />
                                 <figcaption>
                                     <h5>수원 맛집 베스트 50곳</h5>
                                     <p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -253,7 +380,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -264,7 +391,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -275,7 +402,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -286,7 +413,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -297,7 +424,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -308,7 +435,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -319,7 +446,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -330,7 +457,7 @@
                 <div class="col-md-3 featured-responsive">
                     <div class="featured-place-wrap">
                         <a href="detail.html">
-                            <img src="../images/featured1.jpg" class="img-box" alt="#">
+                            <img src="images/featured1.jpg" class="img-box" alt="#">
                             <div class="featured-title-box mt-2">
                                 <h5>오스틴 6.5</h5>
                                 <h6>강남역-스테이크/바베큐</h6>
@@ -347,7 +474,117 @@
 
 
 
-<%@ include file="../layout/footer.jsp"%>
+
+
+
+    <!--============================= FOOTER =============================-->
+    <footer class="main-block dark-bg" id="footers">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="m-footer-item copyright">
+                        <a href="#" target="_blank" class="text-decoration-none">
+                            <img class="mp_logo_img"
+                                src="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/mangoplate-gray-logo.svg"
+                                alt="mangoplate logo">
+                            <p>
+                                <br />
+                                Eat, Share, Be Happy.
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-center">
+                        <ul class="list-unstyled m-linked-list">
+                            <li>회사소개</li>
+                            <li>망고플레이트 채용</li>
+                            <li>투자 정보</li>
+                            <li>브랜드 가이드라인</li>
+                            <li>망고플레이트 비즈니스</li>
+                            <li>광고 문의</li>
+                        </ul>
+
+                        <ul class="list-unstyled m-linked-list">
+                            <li>공지사항</li>
+                            <li>이용약관</li>
+                            <li>비회원 이용자 이용정책</li>
+                            <li>개인정보처리방침</li>
+                            <li>위치기반서비스 이용약관</li>
+                            <li>커뮤니티 가이드라인</li>
+                            <li>청소년보호정책</li>
+                            <li>홀릭 소개</li>
+                            <li>문의하기</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3">
+                    <div class="m-footer-item copyright">
+                        <ul>
+                            <li><a href="#" class="text-decoration-none"><span class="ti-facebook"
+                                        style="font-size: 40px;"></span></a></li>
+                            <li><a href="#"><span class="ti-twitter-alt" style="font-size: 40px;"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="m-popular-list">
+                        <hr />
+                        <p>
+                            인기지역: 이태원 | 홍대 | 강남역 | 가로수길 | 신촌 | 명동 | 대학로 | 연남동 | 부산 | 합정 | 대구 | 여의도 | 건대 | 광화문 | 일산 | 제주
+                            | 경리단길 |
+                            한남동 | 삼청동 | 대전 | 종로 | 서촌 | 잠실 | 사당역 | 인천 | 코엑스 | 상수 | 서래마을 | 송도 | 왕십리 | 분당 | 혜화 | 고속터미널
+
+                        </p>
+                    </div>
+
+                    <hr />
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="m-popular-list">
+
+                        <p>
+                            ㈜ 여기어때컴퍼니<br />
+                            서울특별시 강남구 봉은사로 479, 479타워 11층<br />
+                            대표이사: 최문석<br />
+                            사업자 등록번호: 742-86-00224 [사업자정보확인]<br />
+                            통신판매업 신고번호: 2017-서울강남-01779<br />
+                            고객센터: 02-565-5988<br />
+                            <br />
+                            © 2021 MangoPlate Co., Ltd. All rights reserved.
+
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="m-popular-list d-flex justify-content-end">
+                        <p>
+                            한국어 | English | 简体中文
+
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+    <!--//END FOOTER -->
+
+
+
+
+
 
     <!-- jQuery, Bootstrap JS. -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -358,8 +595,7 @@
     <script src="js/jquery.magnific-popup.js"></script>
     <!-- Swipper Slider JS -->
     <script src="js/swiper.min.js"></script>
-    
-<script>
+    <script>
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
             slidesPerGroup: 3,
@@ -415,4 +651,5 @@
         });
     </script>
 </body>
+
 </html>

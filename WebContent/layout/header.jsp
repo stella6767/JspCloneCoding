@@ -29,8 +29,14 @@
     <link rel="stylesheet" href="../css/set1.css">
     <!-- Main CSS -->
     <link rel="stylesheet" href="../css/style.css">
-    <!-- Swipper Slider -->
-    <link rel="stylesheet" href="../css/swiper.min.css">
+    
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+        <link rel="stylesheet" href="../css/swiper.css">
+    <!-- <!-- Swipper Slider -->
+ <!--    <link rel="stylesheet" href="../css/swiper.min.css"> --> -->
     <!-- 제이쿼리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- 마테리얼 아이콘 -->
