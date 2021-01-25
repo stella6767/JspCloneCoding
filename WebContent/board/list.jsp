@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
- <!-- SLIDER -->
+
+    <!-- SLIDER -->
     <section class="slider d-flex align-items-center container-fluid">
         <!-- <img src="../images/slider.jpg" class="img-box" alt="#"> -->
         <div class="container">
@@ -235,8 +236,8 @@
             <!-- Add Pagination -->
             <div class="swiper-pagination swiper-pagination-black "></div>
             <!-- Add Arrows -->
-            <div class="swiper-button-next swiper-button-black"></div>
-            <div class="swiper-button-prev swiper-button-black"></div>
+            <div class="swiper-button-next swiper-button-black m-swiper-button-next"></div>
+            <div class="swiper-button-prev swiper-button-black m-swiper-button-prev"></div>
         </div>
     </section>
     <!--//END BOOKING -->
@@ -347,72 +348,14 @@
 
 
 
+
+
 <%@ include file="../layout/footer.jsp"%>
-
-    <!-- jQuery, Bootstrap JS. -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <!-- Magnific popup JS -->
-    <script src="js/jquery.magnific-popup.js"></script>
-    <!-- Swipper Slider JS -->
-    <script src="js/swiper.min.js"></script>
-    
-<script>
-        var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 3,
-            slidesPerGroup: 3,
-            spaceBetween: 30,
-            loop: true,
-            loopFillGroupWithBlank: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    </script>
-    <script>
-        if ($('.image-link').length) {
-            $('.image-link').magnificPopup({
-                type: 'image',
-                gallery: {
-                    enabled: true
-                }
-            });
-        }
-        if ($('.image-link2').length) {
-            $('.image-link2').magnificPopup({
-                type: 'image',
-                gallery: {
-                    enabled: true
-                }
-            });
-        }
-    </script>
-    <script>
-        $(window).scroll(function () {
-            // 100 = The point you would like to fade the nav in.
+    <script src="../js/jquery.magnific-popup.js"></script>
+    <script src="../js/mainHeader.js"></script>
+    <script src="../js/swiper.js"></script>
 
-            if ($(window).scrollTop() > 100) {
-
-                $('.fixed').addClass('is-sticky');
-                $(".nav-link").css("color", "black");
-                $(".m-circle").removeClass('text-white');
-
-
-
-            } else {
-                $(".m-circle").addClass('text-white');
-                $(".nav-link").css("color", "white");
-                $('.fixed').removeClass('is-sticky');
-
-            };
-        });
-    </script>
 </body>
+
 </html>

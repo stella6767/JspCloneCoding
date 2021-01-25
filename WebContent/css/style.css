@@ -57,6 +57,10 @@ Author: Surjith S M
   
   .light-bg {
     background: #f3f4f7; }
+   
+   .white-bg{
+   	background: #FFFFFF;
+   }
   
   .dark-bg {
     background: #252a33; }
@@ -67,7 +71,7 @@ Author: Surjith S M
   .nav-menu {
     position: absolute;
     z-index: 2;
-    top: 0;
+    /* top: 0; */
     right: 0;
     left: 0;
     margin: 0 auto; }
@@ -94,7 +98,7 @@ Author: Surjith S M
   
   .navbar-light .navbar-nav .nav-link {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     color: #fff; }
     .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
       color: #fff;
@@ -124,7 +128,7 @@ Author: Surjith S M
   
   /* 헤더 스크롤 내리면 배경색 변환 */
   .is-sticky {
-    background: #252a33;
+    background: #FFFFFF;
     opacity: 1; }
   
   .transition {
@@ -134,12 +138,12 @@ Author: Surjith S M
       transition: all 1s ease-in-out; }
   
   .fixed {
-    border-bottom: 1px solid #636363;
+    
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1; }
+    z-index: 3; }
     @media (max-width: 992px) {
       .fixed {
         border: none;
@@ -371,11 +375,10 @@ Author: Surjith S M
     background-color: white;
   }
   
+
+  
   /* ==============================================================
-     SUB PAGES
-     ============================================================== */
-  /* ==============================================================
-     DETAIL PAGE
+    lising PAGE
      ============================================================== */
   .detail-filter-wrap {
     padding: 17px 0;
@@ -434,9 +437,7 @@ Author: Surjith S M
         margin: 10px 0 0; } }
     .map-icon span {
       font-size: 22px; }
-  
-  .map-toggle {
-    display: none; }
+
   
   .filter-dropdown {
     display: inline-block; }
@@ -699,18 +700,6 @@ Author: Surjith S M
         .contact-info label {
           display: block; } }
   
-  .address {
-    color: #737882;
-    padding: 18px 0 0 16px; }
-    .address > span {
-      font-size: 18px;
-      float: left;
-      margin: 4px 0 0; }
-    .address p {
-      margin: 0 0 0 34px; }
-    .address .featured-open {
-      font-size: 13px;
-      padding: 0 0 0 34px; }
   
   .btn-contact {
     display: block;
@@ -723,53 +712,6 @@ Author: Surjith S M
       background: #ff3a6d;
       border: 2px solid #ff3a6d; }
   
-  .follow {
-    background: #fff; }
-    .follow ul {
-      margin: 0;
-      padding: 0;
-      border-top: 1px solid #ededed;
-      border-bottom: 1px solid #ededed;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-      flex-direction: row;
-      -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-      justify-content: space-around;
-      text-align: center; }
-      .follow ul li {
-        list-style: none;
-        padding: 13px 0;
-        width: 33%; }
-        @media (max-width: 1200px) {
-          .follow ul li {
-            padding: 12px 18px; } }
-        .follow ul li:first-child, .follow ul li:nth-child(2) {
-          border-right: 1px solid #ededed; }
-        .follow ul li h6 {
-          margin: 0; }
-    .follow a {
-      color: #ff3a6d;
-      text-align: center;
-      display: block;
-      font-size: 14px;
-      font-weight: 400;
-      padding: 14px 0; }
-  
-  .follow-img {
-    text-align: center;
-    padding: 20px 16px;
-    color: #3e434b; }
-    .follow-img img {
-      border-radius: 50%; }
-    .follow-img h6 {
-      margin: 11px 0 0; }
   
   .social-counts span {
     font-size: 14px;
@@ -801,4 +743,22 @@ Author: Surjith S M
     height: 100%;
     width: 100%; }
   
+
+  .info th, .info td{
+    padding-right: 70px;
+    padding-bottom: 15px;
+  }
+
+
+
+  /* DetailList page */
+  .m-listImg-box {
+      width: 250px;
+      height: 250px;
+
+  }
+
+
+
+
   /*# sourceMappingURL=style.css.map */
