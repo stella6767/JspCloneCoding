@@ -63,9 +63,9 @@
         <div class="bg transition">
             <div class="container-fluid fixed">
                 <div class="row">
-                    <div class="col-md-12" id="SearchForm">
+                    <div class="col-md-12">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <a class="navbar-brand" href="">
+                            <a class="navbar-brand" href="<%=request.getContextPath()%>/board?cmd=mainList">
                                 <img src="<%= request.getContextPath() %>/images/logo.png" alt="img13" style="width: 100px; height: 40px;" />
 
                             </a>
@@ -74,14 +74,14 @@
                                 aria-label="Toggle navigation">
                                 <span class="icon-menu"></span>
                             </button>
-                            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                            <div class="collapse navbar-collapse justify-content-end" id="SearchForm">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active">
                                         <a class="nav-link font-weight-bold" href="#">EAT딜</a>
                                     </li>
 
                                     <li class="nav-item active">
-                                        <a class="nav-link font-weight-bold" href="#">맛집리스트</a>
+                                        <a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link font-weight-bold" href="#">망고 스토리</a>

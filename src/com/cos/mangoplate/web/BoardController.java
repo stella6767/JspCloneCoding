@@ -1,6 +1,7 @@
 package com.cos.mangoplate.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -46,16 +47,61 @@ public class BoardController extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		
-		if(cmd.equals("list")) {
+		if(cmd.equals("mainList")) {
+			
+			System.out.println("List page");
+			List<Board> boards = boardService.전체글목록보기();			
+			request.setAttribute("boards", boards);
+			
+			//메뉴별 리스트
+			List<Board> breads = new ArrayList<>();
+			List<Board> mandus = new ArrayList<>();
+			List<Board> gukbabs = new ArrayList<>();
+			List<Board> noodles = new ArrayList<>();
+			
+			for (Board board : boards) {
+				if(board.getFoodDesc().contains("빵")) {
+					breads.add(board);
+				}
+				
+				if(board.getFoodDesc().contains("일식")) {
+					mandus.add(board);
+				}
+				
+				if(board.getFoodDesc().contains("국밥")) {
+					gukbabs.add(board);
+				}
+				if(board.getFoodDesc().contains("국수")) {
+					noodles.add(board);
+				}							
+			}
+			
+			request.setAttribute("breads", breads);
+			request.setAttribute("mandus", mandus);
+			request.setAttribute("gukbabs", gukbabs);
+			request.setAttribute("noodles", noodles);
+			
+			
+			RequestDispatcher dis = request.getRequestDispatcher("board/mainList.jsp");
+			dis.forward(request, response);			
+		}else if(cmd.equals("allList")) {
+			
+			System.out.println("allList page");
 			
 			List<Board> boards = boardService.전체글목록보기();			
 			request.setAttribute("boards", boards);
 			
-			System.out.println("List page 들어옴: " + boards);
 			
-			RequestDispatcher dis = request.getRequestDispatcher("board/list.jsp");// RequestDispathcer 만들어서 이동
-			//RequestDispatcher dis = request.getRequestDispatcher("test/apiTest.jsp");
-			dis.forward(request, response);			
+			
+
+			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
+			dis.forward(request, response);	
+			
+		}else if(cmd.equals("moreContent")) {
+			
+			
+			
+			
 		}
 		
 		

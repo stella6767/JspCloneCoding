@@ -21,7 +21,7 @@
 						<div class="col-md-10">
 							<form class="form-wrap mt-4">
 								<div class="btn-group " role="group" aria-label="Basic example">
-									<input type="text" placeholder="지역, 식당 또는 음식" class="btn-group1"> <i class="material-icons">search</i>
+									<input type="text" placeholder="지역, 식당 또는 음식" class="btn-group1" style="outline: none;"> <i class="material-icons">search</i>
 									<button type="submit" class="btn-form">검색</button>
 								</div>
 							</form>
@@ -245,23 +245,22 @@
 <section class="main-block border border-bottom-0 border-right-0 border-left-0 " style="margin-top: 60px;">
 	<div class="container">
 		<div class="row">
-			<h5 class="font-weight-bold" style="color: #753D12;">EAT딜을 판매중인 식당</h5>
+			<h5 class="font-weight-bold" style="color: #753D12;">베이커리 맛집!</h5>
 		</div>
 		<div class="row mt-4">
 
-			<c:forEach var="board" items="${boards}">
-			<div class="col-md-3 featured-responsive">
-				<div class="featured-place-wrap">
-					<a href="detail.html"> <img src="${board.mainImg}" class="img-box" alt="#">
-						<div class="featured-title-box mt-2">
-							<h5>${board.title}</h5>
-							<h7>${board.place }</h6>
-						</div>
-					</a>
+			<c:forEach var="bread" items="${breads}" varStatus="status" begin="0" end="7">
+				<div class="col-md-3 featured-responsive">
+					<div class="featured-place-wrap">
+						<a href="detail.html"> <img src="${bread.mainImg}" class="img-box" alt="#">
+							<div class="featured-title-box mt-2">
+								<h5>${bread.title}</h5>
+								<h7>${bread.place }</h6>
+							</div>
+						</a>
+					</div>
 				</div>
-			</div>
 			</c:forEach>
-
 
 		</div>
 	</div>

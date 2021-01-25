@@ -4,17 +4,22 @@
 }
 
 .m-swiper-button-prev {
+	border:0;
+	outline:0;
     position: absolute;
     left: -80px;
 }
 
 .m-swiper-button-next {
+	border:0;
+	outline:0;
     position: absolute;
     right: -80px;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
+
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 0.5;

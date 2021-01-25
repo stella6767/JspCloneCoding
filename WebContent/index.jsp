@@ -3,7 +3,7 @@
 <%
 	/*  response.sendRedirect("board/list.jsp");  */
 
-	RequestDispatcher dis = request.getRequestDispatcher("/board?cmd=list");
+	RequestDispatcher dis = request.getRequestDispatcher("/board?cmd=mainList");
 	dis.forward(request, response); 
 			 
 	/* response.sendRedirect("/mangoplate/board?cmd=list"); */
