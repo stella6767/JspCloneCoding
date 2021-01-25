@@ -39,7 +39,7 @@ public class ApiServlet extends HttpServlet {
 		System.out.println(items.get(1).getMainTitle());
 		
 		matzipService matzipService = new matzipService();
-		//matzipService.데이터입력(items); 이제는 필요없음
+		//matzipService.데이터입력(items); //이제는 필요없음
 		
 		
 		request.setAttribute("items", items);

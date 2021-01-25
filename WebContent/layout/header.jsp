@@ -31,21 +31,21 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
     <!-- Simple line Icon -->
-    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/simple-line-icons.css">
 
     <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/magnific-popup.css">
     <!-- Themify Icon -->
-    <link rel="stylesheet" href="../css/themify-icons.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/themify-icons.css">
     <!-- Hover Effects -->
-    <link rel="stylesheet" href="../css/set1.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/set1.css">
     <!-- Main CSS -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/style.css">
     <!-- Swipper Slider -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <link rel="stylesheet" href="../css/m-swiper.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/m-swiper.css">
     <!-- 제이쿼리 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- 마테리얼 아이콘 -->
@@ -66,7 +66,7 @@
                     <div class="col-md-12" id="SearchForm">
                         <nav class="navbar navbar-expand-lg navbar-light">
                             <a class="navbar-brand" href="">
-                                <img src="../images/logo.png" alt="img13" style="width: 100px; height: 40px;" />
+                                <img src="<%= request.getContextPath() %>/images/logo.png" alt="img13" style="width: 100px; height: 40px;" />
 
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"

@@ -25,7 +25,7 @@
         <div class="container" style="padding-left: 100px; padding-right: 100px;">
             <div class="d-flex justify-content-center border-bottom py-4">
                 <div>
-                    <img src="../images/featured1.jpg" class="m-listImg-box" alt="img13" />
+                    <img src="<%= request.getContextPath() %>/images/featured1.jpg" class="m-listImg-box" alt="img13" />
                 </div>
                 <div class="ml-5">
                     <div class="d-flex justify-content-between">
@@ -46,7 +46,7 @@
 
             <div class="d-flex justify-content-center border-bottom py-4">
                 <div>
-                    <img src="../images/featured1.jpg" class="m-listImg-box" alt="img13" />
+                    <img src="<%= request.getContextPath() %>/images/featured1.jpg" class="m-listImg-box" alt="img13" />
                 </div>
                 <div class="ml-5">
                     <div class="d-flex justify-content-between">
@@ -86,7 +86,7 @@
 
 <%@ include file="../layout/footer.jsp"%>
 
-<script src="../js/subHeader.js"></script>
+<script src="<%= request.getContextPath() %>/js/subHeader.js"></script>
 
 
 

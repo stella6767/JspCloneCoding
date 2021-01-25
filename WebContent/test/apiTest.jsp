@@ -30,6 +30,18 @@
 	</c:forEach>
 
 
+<%-- 	<c:forEach var="board" items="${boards}">
+		<div class="card col-md-12 m-2">
+			<div class="card-body">
+				<h4 class="card-title">${board.title} 왜 안되지? prefix 라이브러리 때문.....</h4>
+
+
+
+			</div>
+		</div>
+	</c:forEach> --%>
+
+
 
 
 </body>

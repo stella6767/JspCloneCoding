@@ -10,27 +10,27 @@
 		<div class="swiper-wrapper">
 
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide2.jpg" class="grid image-link"> <img src="../images/reserve-slide2.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide2.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide2.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide1.jpg" class="grid image-link"> <img src="../images/reserve-slide1.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide1.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide1.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide3.jpg" class="grid image-link"> <img src="../images/reserve-slide3.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide3.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide3.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide1.jpg" class="grid image-link"> <img src="../images/reserve-slide1.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide1.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide1.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide2.jpg" class="grid image-link"> <img src="../images/reserve-slide2.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide2.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide2.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 			<div class="swiper-slide">
-				<a href="../images/reserve-slide3.jpg" class="grid image-link"> <img src="../images/reserve-slide3.jpg" class="img-fluid" alt="#">
+				<a href="<%= request.getContextPath() %>/images/reserve-slide3.jpg" class="grid image-link"> <img src="<%= request.getContextPath() %>/images/reserve-slide3.jpg" class="img-fluid" alt="#">
 				</a>
 			</div>
 		</div>
@@ -134,7 +134,7 @@
 					<hr>
 					<div class="customer-review_wrap">
 						<div class="customer-img">
-							<img src="../images/customer-img1.jpg" class="img-fluid" alt="#">
+							<img src="<%= request.getContextPath() %>/images/customer-img1.jpg" class="img-fluid" alt="#">
 							<p>Amanda G</p>
 							<span>35 Reviews</span>
 						</div>
@@ -150,9 +150,9 @@
 							<p class="customer-text">I love the noodles here but it is so rare that I get to come here. Tasty Hand-Pulled Noodles is the best type of whole in the wall restaurant. The staff are really nice, and you should be seated quickly. I usually get the hand pulled noodles in a soup. House Special #1 is amazing and the lamb noodles are also great. If you want your noodles a little chewier, get the knife cut noodles, which are also amazing. Their dumplings are great dipped in their chili sauce.</p>
 							<p class="customer-text">I love how you can see into the kitchen and watch them make the noodles and you can definitely tell that this is a family run establishment. The prices are are great with one dish maybe being $9. You just have to remember to bring cash.</p>
 							<ul>
-								<li><img src="../images/review-img1.jpg" class="img-fluid" alt="#"></li>
-								<li><img src="../images/review-img2.jpg" class="img-fluid" alt="#"></li>
-								<li><img src="../images/review-img3.jpg" class="img-fluid" alt="#"></li>
+								<li><img src="<%= request.getContextPath() %>/images/review-img1.jpg" class="img-fluid" alt="#"></li>
+								<li><img src="<%= request.getContextPath() %>/images/review-img2.jpg" class="img-fluid" alt="#"></li>
+								<li><img src="<%= request.getContextPath() %>/images/review-img3.jpg" class="img-fluid" alt="#"></li>
 
 							</ul>
 						</div>
@@ -167,13 +167,13 @@
 			</div>
 			<div class="col-md-4 responsive-wrap">
 				<div class="contact-info">
-					<img src="../images/map.jpg" class="img-fluid" alt="#">
+					<img src="<%= request.getContextPath() %>/images/map.jpg" class="img-fluid" alt="#">
 
 					<div>주변인기식당</div>
 
 					<div class="d-flex">
 						<div>
-							<img src="../images/review-img3.jpg" class="img-fluid" alt="#">
+							<img src="<%= request.getContextPath() %>/images/review-img3.jpg" class="img-fluid" alt="#">
 						</div>
 						<div>dsadsad</div>
 
@@ -194,7 +194,7 @@
 <%@ include file="../layout/footer.jsp"%>
 
 
-<script src="../js/jquery.magnific-popup.js"></script>
-<script src="../js/subHeader.js"></script>
-<script src="../js/swiper2.js"></script>
+<script src="<%= request.getContextPath() %>/js/jquery.magnific-popup.js"></script>
+<script src="<%= request.getContextPath() %>/js/subHeader.js"></script>
+<script src="<%= request.getContextPath() %>/js/swiper2.js"></script>
 

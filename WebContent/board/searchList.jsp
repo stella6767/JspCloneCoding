@@ -45,7 +45,7 @@
 				<div class="row detail-options-wrap">
 					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
 						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="../images/featured1.jpg" class="img-box" alt="#">
+							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured1.jpg" class="img-box" alt="#">
 								<div class="featured-title-box">
 									<h5>오스틴 6.5</h5>
 									<h6>강남역-스테이크/바베큐</h6>
@@ -56,7 +56,7 @@
 					</div>
 					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
 						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="../images/featured2.jpg" class="img-fluid" alt="#">
+							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
 								<div class="featured-title-box">
 									<div class="featured-title-box">
 										<h5>오스틴 6.5</h5>
@@ -70,7 +70,7 @@
 
 					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
 						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="../images/featured2.jpg" class="img-fluid" alt="#">
+							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
 								<div class="featured-title-box">
 									<div class="featured-title-box">
 										<h5>오스틴 6.5</h5>
@@ -84,7 +84,7 @@
 
 					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
 						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="../images/featured2.jpg" class="img-fluid" alt="#">
+							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
 								<div class="featured-title-box">
 									<div class="featured-title-box">
 										<h5>오스틴 6.5</h5>
@@ -122,9 +122,9 @@
 <%@ include file="../layout/footer.jsp"%>
 
 
-<script src="../js/jquery.magnific-popup.js"></script>
-<script src="../js/swiper.js"></script>
-<script src="../js/subHeader.js"></script>
+<script src="<%= request.getContextPath() %>/js/jquery.magnific-popup.js"></script>
+<script src="<%= request.getContextPath() %>/js/swiper.js"></script>
+<script src="<%= request.getContextPath() %>/js/subHeader.js"></script>
 
 
 
