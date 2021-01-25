@@ -11,6 +11,39 @@ import com.cos.mangoplate.config.DB;
 
 public class BoardDao {
 	
+	
+	public List<Board> findAll(int page) {  //오버로딩
+
+		// SELECT 해서 Board 객체를 컬렉션에 담아서 리턴
+		String sql = "SELECT * FROM board ORDER BY Id DESC LIMIT ?,4"; // 0,4 4,4 8,4
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Board> boards = new ArrayList<>();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, page * 4); // 0 -> 0, 1 ->4, 2->8
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // 커서를 이동하는 함수
+//				Board board = Board.builder().id(rs.getInt("id")).title(rs.getString("title"))
+//						.content(rs.getString("content")).readCount(rs.getInt("readCount")).userId(rs.getInt("userId"))
+//						.createDate(rs.getTimestamp("createDate")).build();
+				//boards.add(board);
+			}
+
+			return boards;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+	
+	
+	
 	public List<Board> findAll() {
 
 		// SELECT 해서 Board 객체를 컬렉션에 담아서 리턴

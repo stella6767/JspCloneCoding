@@ -19,7 +19,7 @@
 
 
 	<section class="main-block">
-		<div class="container" style="padding-left: 100px; padding-right: 100px;">
+		<div class="container" style="padding-left: 100px; padding-right: 100px;" id="m-list-container">
 
 
 
@@ -48,7 +48,7 @@
 
 
 			<div class="justify-content-center align-items-center d-flex mt-2">
-				<button class="btn-more text-dark" onclick="moreContent( ${dto.id},10)" >
+				<button class="btn-more text-dark" onclick="moreContent(${status.index})" >
 					<i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
 				</button>
 			</div>
@@ -70,39 +70,25 @@
 	<%@ include file="../layout/footer.jsp"%>
 
 	<script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
+	<%-- <script src="<%=request.getContextPath()%>/js/addList.js"></script> --%>
+	
 
 <script>
-	function moreContent(cnt){
 
-		var data={
-			
-		}
+function moreContent(end){
+	
+	  var boards = `<%= request.getAttribute("boards") %>`; //잘 넘어가는구만..
 
-			
-		$.ajax({
-			type : "post",
-			url : "/blog/reply?cmd=delete&id="+id,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
+	/*   var begin = ` `; 
+      var end = ``; */
+		
+/* 	  console.log(begin); */
+	  console.log(end); //status 값은 안에서만 먹고 밖에서는 안 먹네.. 방법 강구...
+ 
 
-		}).done(function(result) {
-			if (result.statusCode == 1) {
-				console.log(result);
-				$("#reply-"+id).remove();
-			} else {
-				alert("댓글 삭제 실패");
-			}
-
-		});
-
-
-		}
-
+	}
 
 </script>
-
-
 
 
 </body>
