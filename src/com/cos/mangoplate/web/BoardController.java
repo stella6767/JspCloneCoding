@@ -93,7 +93,10 @@ public class BoardController extends HttpServlet {
 			
 			List<AllListRespDto> boards = boardService.맛집목록보기();
 			
+			String all = "all";
+			
 			request.setAttribute("boards", boards);		
+			request.setAttribute("all", all);
 
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
 			dis.forward(request, response);	
@@ -122,10 +125,19 @@ public class BoardController extends HttpServlet {
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
 			dis.forward(request, response);	
-		}else if(cmd.equals("searchList")) {
-			System.out.println("searchList page");
+		}else if(cmd.equals("subAllList")) {
+			System.out.println("subAllList");
 			
-			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
+			String keyword = request.getParameter("keyword");
+			System.out.println("키워드: "+keyword);
+			
+			List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(keyword);			
+			
+			System.out.println(boards);
+			
+			request.setAttribute("boards", boards);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
 			dis.forward(request, response);	
 			
 		}

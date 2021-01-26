@@ -56,9 +56,9 @@
 			<div class="col-md-4">
 				<div class="find-place-img_wrap">
 					<div class="grid">
-						<a href="<%=request.getContextPath()%>/board?cmd=searchList">
+						<a href="<%=request.getContextPath()%>/board?cmd=subAllList&keyword=만두">
 							<figure class="effect-ruby">
-								<img src="<%=request.getContextPath()%>/images/menu1.jpg" class="img-box" alt="img13" />
+								<img src="<%=request.getContextPath()%>/images/menu1.jpg" class="img-box" alt="mandu" />
 								<figcaption>
 									<h5>만두 맛집 베스트</h5>
 									<p>"만두 맛집을 소개해드릴게요!"</p>
@@ -72,6 +72,7 @@
 			<div class="col-md-4">
 				<div class="find-place-img_wrap">
 					<div class="grid">
+					<a href="<%=request.getContextPath()%>/board?cmd=subAllList&keyword=밀면">
 						<figure class="effect-ruby">
 							<img src="<%=request.getContextPath()%>/images/menu2.jpg" class="img-box" alt="img13" />
 							<figcaption>
@@ -79,6 +80,7 @@
 								<p>"맛집천국 수원으로 놀러오세요!"</p>
 							</figcaption>
 						</figure>
+						</a>
 					</div>
 				</div>
 			</div>

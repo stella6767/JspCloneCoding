@@ -15,6 +15,11 @@ public class BoardService {
 	}
 	
 	
+	public List<AllListRespDto> 메뉴별맛집목록보기(String keyword){
+		return boardDao.findByKeyword(keyword);
+	}
+	
+	
 	public Board 글상세보기(int id) {
 		
 		// 조회수 업데이트 치기
@@ -28,7 +33,7 @@ public class BoardService {
 	
 	
 	public List<AllListRespDto> 맛집목록보기() {
-		return boardDao.findList();		
+		return boardDao.findList10();		
 	}
 	
 	public List<AllListRespDto> 목록더보기(int startNum){

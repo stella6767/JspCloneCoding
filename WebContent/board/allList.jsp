@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -20,19 +21,22 @@
 
 
 	<section class="main-block">
-		<div class="container" style="padding-left: 100px; padding-right: 100px;" id="m-list-container">
+		<div class="container"
+			style="padding-left: 100px; padding-right: 100px;"
+			id="m-list-container">
 
 
 			<div id="m-list">
-				<c:forEach var="board" items="${boards}" varStatus="status" begin="0" end="9">
-					<div class="d-flex justify-content-center border-bottom py-4 board-item">
+				<c:forEach var="board" items="${boards}">
+					<div
+						class="d-flex justify-content-center border-bottom py-4 board-item">
 						<div>
 							<img src="${board.mainImg}" class="m-listImg-box" alt="img13" />
 						</div>
 						<div class="ml-5">
 							<div class="d-flex justify-content-between">
 								<div>
-									<h4>${board.id}.${board.title} ${board.rate} </h4>
+									<h4>${board.id}.${board.title}${board.rate}</h4>
 								</div>
 								<div>
 									<i class="large material-icons">star_border</i>
@@ -42,11 +46,12 @@
 							<div class="mt-2 text-muted">${board.addr}</div>
 							<div class="mt-3">${board.foodDesc}</div>
 							<div class="mt-5 d-flex  justify-content-end">
-								<a class="nav-link font-weight-bold text-muted" href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
-								${board.title} 더보기 
+								<a class="nav-link font-weight-bold text-muted"
+									href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
+									${board.title} 더보기 </a> <a class="text-muted"
+									href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
+									<i class="material-icons " style="margin-top: 15px">chevron_right</i>
 								</a>
-								<a class="text-muted"href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
-								<i class="material-icons " style="margin-top: 15px">chevron_right</i></a>
 							</div>
 						</div>
 					</div>
@@ -54,17 +59,21 @@
 
 			</div>
 
-			<div class="justify-content-center align-items-center d-flex mt-2">
-				<button class="btn-more text-dark" onclick="moreContent()">
-					<i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
-				</button>
-			</div>
+			<c:if test="${all eq 'all'}">
+				<div class="justify-content-center align-items-center d-flex mt-2">
+					<button class="btn-more text-dark" onclick="moreContent()">
+						<i class="large material-icons">arrow_drop_down</i> <i
+							class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
+					</button>
+				</div>
+			</c:if>
 		</div>
 	</section>
 
 
 	<section class="main-block">
-		<div class="container" style="padding-left: 100px; padding-right: 100px;">
+		<div class="container"
+			style="padding-left: 100px; padding-right: 100px;">
 			<div class="justify-content-center py-4">
 				<div>리스트 지도</div>
 				<div class="m-list-map">지도API</div>

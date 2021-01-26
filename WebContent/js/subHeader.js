@@ -15,11 +15,11 @@ $(function() {
 	searchForm += `<input type="text" placeholder="지역, 식당 또는 음식"class="ml-5 mt-1 rounded w-50  " style="padding-left: 40px; outline: none; border: none;">`;
 	searchForm += `</form>`;
 	searchForm += ` <ul class="navbar-nav">`;
-	searchForm += `<li class="nav-item active">`;
+	searchForm += `<li class="nav-item active">`
 	searchForm += `<a class="nav-link text-dark font-weight-bold" href="#" >EAT딜</a>`;
 	searchForm += `</li>`;
 	searchForm += `<li class="nav-item active">`;
-	searchForm += `<a class="nav-link text-dark font-weight-bold" href="#" onclick='(function(){ location.reload(); })();'>맛집리스트</a>`;
+	searchForm += `<a class="nav-link text-dark font-weight-bold" href="/mangoplate/board?cmd=allList" >맛집리스트</a>`;
 	searchForm += `</li>`;
 	searchForm += `<li class="nav-item">`;
 	searchForm += `<a class="nav-link text-dark font-weight-bold" href="#">망고스토리</a>`;
