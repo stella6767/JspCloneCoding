@@ -16,7 +16,14 @@ public class BoardService {
 	
 	
 	public Board 글상세보기(int id) {
+		
+		// 조회수 업데이트 치기
+		int result = boardDao.updateReadCount(id);
+		if (result == 1) {
 		return boardDao.findById(id);
+		}else {
+			return null;
+		}
 	}
 	
 	

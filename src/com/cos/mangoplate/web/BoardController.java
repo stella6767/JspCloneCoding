@@ -59,7 +59,7 @@ public class BoardController extends HttpServlet {
 			
 			//메뉴별 리스트
 			List<Board> breads = new ArrayList<>();
-			List<Board> mandus = new ArrayList<>();
+			List<Board> hanwoo = new ArrayList<>();
 			List<Board> gukbabs = new ArrayList<>();
 			List<Board> noodles = new ArrayList<>();
 			
@@ -68,8 +68,8 @@ public class BoardController extends HttpServlet {
 					breads.add(board);
 				}
 				
-				if(board.getFoodDesc().contains("일식")) {
-					mandus.add(board);
+				if(board.getFoodDesc().contains("한우")) {
+					hanwoo.add(board);
 				}
 				
 				if(board.getFoodDesc().contains("국밥")) {
@@ -81,7 +81,7 @@ public class BoardController extends HttpServlet {
 			}
 			
 			request.setAttribute("breads", breads);
-			request.setAttribute("mandus", mandus);
+			request.setAttribute("mandus", hanwoo);
 			request.setAttribute("gukbabs", gukbabs);
 			request.setAttribute("noodles", noodles);
 			
@@ -116,10 +116,18 @@ public class BoardController extends HttpServlet {
 			
 			Board board = boardService.글상세보기(id);
 			
+			//리뷰글도 같이 오도록 로직
+			
 			request.setAttribute("board", board);
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
 			dis.forward(request, response);	
+		}else if(cmd.equals("searchList")) {
+			System.out.println("searchList page");
+			
+			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
+			dis.forward(request, response);	
+			
 		}
 		
 		

@@ -12,6 +12,27 @@ import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 
 public class BoardDao {
 	
+	
+	public int updateReadCount(int id) {
+		String sql = "UPDATE matzip SET readCount=readCount+1 WHERE Id = ?";
+
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt);
+		}
+		return -1;
+	}
+		
+	
 	public Board findById(int id) {
 		
 				String sql = "SELECT * FROM matzip where id = ?";  
@@ -40,6 +61,7 @@ public class BoardDao {
 								.mainImg(rs.getString("mainimg"))
 								.subImg(rs.getString("subimg"))
 								.foodDesc(rs.getString("fooddesc"))
+								.rate(rs.getDouble("rate"))
 								.readCount(rs.getInt("readCount"))
 								.build();
 						
@@ -80,6 +102,7 @@ public class BoardDao {
 				dto.setAddr(rs.getString("addr"));
 				dto.setMainImg(rs.getString("mainimg"));
 				dto.setFoodDesc(rs.getString("fooddesc"));
+				dto.setRate(rs.getDouble("rate"));
 				dto.setReadCount(rs.getInt("readCount"));
 						
 				boards.add(dto);							
@@ -117,6 +140,7 @@ public class BoardDao {
 						dto.setAddr(rs.getString("addr"));
 						dto.setMainImg(rs.getString("mainimg"));
 						dto.setFoodDesc(rs.getString("fooddesc"));
+						dto.setRate(rs.getDouble("rate"));
 						dto.setReadCount(rs.getInt("readCount"));
 						
 						boards.add(dto);

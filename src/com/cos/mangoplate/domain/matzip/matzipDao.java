@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
+import java.util.Random;
 
 import com.cos.mangoplate.config.DB;
 
@@ -13,16 +14,22 @@ public class matzipDao {
 	public void insertALL(List<Item> items) {
 
 		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO matzip(title,gugun,lat, lng, place, addr, tel, url, usagetime, menu, mainimg, subimg, fooddesc) ");
-		sb.append("VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-
+		sb.append("INSERT INTO matzip(title,gugun,lat, lng, place, addr, tel, url, usagetime, menu, mainimg, subimg, fooddesc, rate) ");
+		sb.append("VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+		
 		String sql = sb.toString();
-
+		Double min = 3.0;  
+        Double max = 4.0; 
+		
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 
 		try {
 			for (int i = 0; i < items.size(); i++) {
+				
+				double x = (Math.random() * ((max - min) + 1)) + min;   
+	            double xrounded = Math.round(x * 10) / 10.0; 
+	            
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, items.get(i).getMainTitle());
 				pstmt.setString(2, items.get(i).getGugumn());
@@ -37,7 +44,7 @@ public class matzipDao {
 				pstmt.setString(11, items.get(i).getMainImgNormal());
 				pstmt.setString(12, items.get(i).getMainImgThumb());
 				pstmt.setString(13, items.get(i).getItemCntnts());
-				
+				pstmt.setDouble(14, xrounded); //임의로 0~5 사이의 난수값 집어넣기
 				
 				pstmt.executeUpdate();
 			}

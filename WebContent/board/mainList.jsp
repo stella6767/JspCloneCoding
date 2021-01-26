@@ -56,13 +56,15 @@
 			<div class="col-md-4">
 				<div class="find-place-img_wrap">
 					<div class="grid">
-						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
-							<figcaption>
-								<h5>수원 맛집 베스트 50곳</h5>
-								<p>"맛집천국 수원으로 놀러오세요!"</p>
-							</figcaption>
-						</figure>
+						<a href="<%=request.getContextPath()%>/board?cmd=searchList">
+							<figure class="effect-ruby">
+								<img src="<%=request.getContextPath()%>/images/menu1.jpg" class="img-box" alt="img13" />
+								<figcaption>
+									<h5>만두 맛집 베스트</h5>
+									<p>"만두 맛집을 소개해드릴게요!"</p>
+								</figcaption>
+							</figure>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -71,7 +73,7 @@
 				<div class="find-place-img_wrap">
 					<div class="grid">
 						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
+							<img src="<%=request.getContextPath()%>/images/menu2.jpg" class="img-box" alt="img13" />
 							<figcaption>
 								<h5>수원 맛집 베스트 50곳</h5>
 								<p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -84,7 +86,7 @@
 				<div class="find-place-img_wrap">
 					<div class="grid">
 						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
+							<img src="<%=request.getContextPath()%>/images/menu3.jpg" class="img-box" alt="img13" />
 							<figcaption>
 								<h5>수원 맛집 베스트 50곳</h5>
 								<p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -97,7 +99,7 @@
 				<div class="find-place-img_wrap">
 					<div class="grid">
 						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
+							<img src="<%=request.getContextPath()%>/images/menu4.jpg" class="img-box" alt="img13" />
 							<figcaption>
 								<h5>수원 맛집 베스트 50곳</h5>
 								<p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -110,7 +112,7 @@
 				<div class="find-place-img_wrap">
 					<div class="grid">
 						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
+							<img src="<%=request.getContextPath()%>/images/menu5.jpg" class="img-box" alt="img13" />
 							<figcaption>
 								<h5>수원 맛집 베스트 50곳</h5>
 								<p>"맛집천국 수원으로 놀러오세요!"</p>
@@ -123,7 +125,7 @@
 				<div class="find-place-img_wrap">
 					<div class="grid">
 						<figure class="effect-ruby">
-							<img src="<%=request.getContextPath()%>/images/featured1.jpg" class="img-box" alt="img13" />
+							<img src="<%=request.getContextPath()%>/images/menu6.jpg" class="img-box" alt="img13" />
 							<figcaption>
 								<h5>수원 맛집 베스트 50곳</h5>
 								<p>"맛집천국 수원으로 놀러오세요!"</p>

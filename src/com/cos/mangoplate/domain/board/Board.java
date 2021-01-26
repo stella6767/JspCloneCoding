@@ -25,6 +25,7 @@ public class Board {
 	private String mainImg;
 	private String subImg;
 	private String foodDesc;
+	private double rate;
 	private int readCount; //조회수 
 	
 }

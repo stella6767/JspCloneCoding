@@ -32,7 +32,7 @@
 						<div class="ml-5">
 							<div class="d-flex justify-content-between">
 								<div>
-									<h4>${board.id}.${board.title}</h4>
+									<h4>${board.id}.${board.title} ${board.rate} </h4>
 								</div>
 								<div>
 									<i class="large material-icons">star_border</i>
