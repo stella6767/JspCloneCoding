@@ -1,5 +1,6 @@
 package com.cos.mangoplate.web;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.cos.mangoplate.domain.board.Board;
+import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.service.BoardService;
+import com.cos.mangoplate.utill.Script;
+import com.google.gson.Gson;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
@@ -84,24 +88,38 @@ public class BoardController extends HttpServlet {
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/mainList.jsp");
 			dis.forward(request, response);			
-		}else if(cmd.equals("allList")) {
-			
+		}else if(cmd.equals("allList")) {			
 			System.out.println("allList page");
 			
-			List<Board> boards = boardService.전체글목록보기();			
-			request.setAttribute("boards", boards);
+			List<AllListRespDto> boards = boardService.맛집목록보기();
 			
-			
-			
+			request.setAttribute("boards", boards);		
 
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
 			dis.forward(request, response);	
 			
 		}else if(cmd.equals("moreContent")) {
+			System.out.println("ajax로 더보기버튼");
+			Gson gson = new Gson();
+					
+			int startNum = Integer.parseInt(request.getParameter("startNum"));
+			System.out.println(startNum);
 			
+			List<AllListRespDto> boards = boardService.목록더보기(startNum);
 			
+			String responseData = gson.toJson(boards);
+			Script.responseData(response, responseData);	
+		}else if(cmd.equals("detail")) {
+			System.out.println("detail page");
 			
+			int id = Integer.parseInt(request.getParameter("id"));
 			
+			Board board = boardService.글상세보기(id);
+			
+			request.setAttribute("board", board);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
+			dis.forward(request, response);	
 		}
 		
 		

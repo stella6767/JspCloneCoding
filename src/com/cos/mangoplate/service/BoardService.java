@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cos.mangoplate.domain.board.Board;
 import com.cos.mangoplate.domain.board.BoardDao;
+import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 
 public class BoardService {
 	
@@ -11,6 +12,20 @@ public class BoardService {
 	
 	public BoardService() {
 		boardDao = new BoardDao();
+	}
+	
+	
+	public Board 글상세보기(int id) {
+		return boardDao.findById(id);
+	}
+	
+	
+	public List<AllListRespDto> 맛집목록보기() {
+		return boardDao.findList();		
+	}
+	
+	public List<AllListRespDto> 목록더보기(int startNum){
+		return boardDao.moreList(startNum);		
 	}
 	
 	
