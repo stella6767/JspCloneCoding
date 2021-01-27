@@ -13,6 +13,14 @@ import com.cos.mangoplate.domain.board.dto.MapDto;
 
 public class BoardDao {
 		
+	public List<Board> searByKeyword(String keyword){
+		
+		
+		
+		
+	}
+	
+	
 	
 	public List<MapDto> findAllMap() { //필요없다...
 		String sql = "SELECT id, lat,lng FROM matzip"; 

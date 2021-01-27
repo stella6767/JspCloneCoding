@@ -18,9 +18,10 @@ public class CharConfig implements Filter{
 		HttpServletRequest request = (HttpServletRequest) req;
     	HttpServletResponse response = (HttpServletResponse) resp;
 		
-//     	request.setCharacterEncoding("utf-8");
-//		response.setContentType("text/html; charset=utf-8");
-		
+     	request.setCharacterEncoding("utf-8");
+		//response.setContentType("text/html; charset=utf-8");
+		response.setCharacterEncoding("utf-8");
+     	
 		chain.doFilter(request, response);
 	}
 }

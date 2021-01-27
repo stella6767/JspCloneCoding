@@ -172,8 +172,9 @@ public class BoardController extends HttpServlet {
 			System.out.println("search");
 			
 			String keyword = request.getParameter("keyword");
-			
 			System.out.println(keyword);
+			
+			
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
 			dis.forward(request, response);	
