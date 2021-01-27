@@ -170,34 +170,11 @@ public class BoardController extends HttpServlet {
 			}			
 			
 			Gson gson = new Gson();
+	
+			
+		}else if(cmd.equals("")) {
 			
 			
-			
-			
-			
-			
-			//List<AllListRespDto> boards  = gson.fromJson(requestData, new TypeToken<List<AllListRespDto>>(){}.getType());
-			
-			
-			
-			/*
-			 * String keyword = request.getParameter("keyword"); String keyType =
-			 * request.getParameter("keyType");
-			 * System.out.println("키워드 키타입: "+keyword+"  "+keyType);
-			 * 
-			 * if(keyword == null && keyType == null) { List<AllListRespDto> boards =
-			 * boardService.맛집목록보기(); String responseData = gson.toJson(boards);
-			 * Script.responseData(response, responseData); }else if(keyType.equals("메뉴")){
-			 * 
-			 * List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(keyword); String
-			 * responseData = gson.toJson(boards); Script.responseData(response,
-			 * responseData); }else{ List<AllListRespDto> boards =
-			 * boardService.구군별맛집목록보기(keyword); String responseData = gson.toJson(boards);
-			 * Script.responseData(response, responseData);
-			 * 
-			 * }
-			 */
-
 			
 		}
 		

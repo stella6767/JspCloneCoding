@@ -61,7 +61,7 @@
 						
 							
 							
-							<a class="nav-link" href="<%=request.getContextPath()%>/review?cmd=saveForm">
+							<a href="<%=request.getContextPath()%>/review?cmd=saveForm">
 							<span class="icon-pencil d-block"></span>리뷰쓰기</a>
 						
 					</div>

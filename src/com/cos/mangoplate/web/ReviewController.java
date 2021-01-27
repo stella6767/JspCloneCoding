@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
 
-@WebServlet
+@WebServlet("/review")
 public class ReviewController extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -55,7 +55,10 @@ public class ReviewController extends HttpServlet{
 //				RequestDispatcher dis = request.getRequestDispatcher("user/loginForm.jsp");
 //				dis.forward(request, response);
 //			}
-//						
+
+			
+			RequestDispatcher dis = request.getRequestDispatcher("review/saveForm.jsp");
+			dis.forward(request, response);
 			
 		}
 		
