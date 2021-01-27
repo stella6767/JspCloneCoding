@@ -50,6 +50,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- 마테리얼 아이콘 -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 카카오지도APi -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=12353cd710be446e6ea6b13e46d6a960"></script>
 </head>
 
 

@@ -24,7 +24,7 @@ function addList(boards){
          var addr = board.addr;
 		 var foodDesc = board.foodDesc;
 
-		 //console.log(board);
+		 //console.log(board);  //gson으로 한 번 직렬화를 거쳐야 한다. json.stringfy는 안 먹힘..
  		
   		 var addList = `<div class="d-flex justify-content-center border-bottom py-4 board-item">`;
 			addList += `<div><img src="${mainImg}" class="m-listImg-box" alt="img13" /></div>`;

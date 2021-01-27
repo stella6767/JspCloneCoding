@@ -2,11 +2,14 @@
 	font-weight: normal;
 	font-style: normal;
 	font-family: 'feathericons';
-	src:url('../fonts/feathericons/feathericons.eot?-8is7zf');
-	src:url('../fonts/feathericons/feathericons.eot?#iefix-8is7zf') format('embedded-opentype'),
-	url('../fonts/feathericons/feathericons.woff?-8is7zf') format('woff'),
-	url('../fonts/feathericons/feathericons.ttf?-8is7zf') format('truetype'),
-	url('../fonts/feathericons/feathericons.svg?-8is7zf#feathericons') format('svg');
+	src: url('../fonts/feathericons/feathericons.eot?-8is7zf');
+	src: url('../fonts/feathericons/feathericons.eot?#iefix-8is7zf')
+		format('embedded-opentype'),
+		url('../fonts/feathericons/feathericons.woff?-8is7zf') format('woff'),
+		url('../fonts/feathericons/feathericons.ttf?-8is7zf')
+		format('truetype'),
+		url('../fonts/feathericons/feathericons.svg?-8is7zf#feathericons')
+		format('svg');
 }
 
 .grid {
@@ -48,28 +51,28 @@
 	width: 100%;
 	text-align: center;
 }
-@media (max-width: 992px) {
+
+@media ( max-width : 992px) {
 	.grid figure figcaption {
 		padding: 0.7em;
 	}
 }
 
 .grid figure figcaption h5 {
-	font-weight: 400;	
+	font-weight: 400;
 }
-@media (max-width: 992px) {
+
+@media ( max-width : 992px) {
 	.grid figure figcaption h5 {
 		font-size: 22px;
 	}
 }
 
-.grid figure figcaption::before,
-.grid figure figcaption::after {
+.grid figure figcaption::before, .grid figure figcaption::after {
 	pointer-events: none;
 }
 
-.grid figure figcaption,
-.grid figure figcaption > a {
+.grid figure figcaption, .grid figure figcaption>a {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -77,7 +80,7 @@
 
 /* Anchor will cover the whole item by default */
 /* For some effects it will show as a button */
-.grid figure figcaption > a {
+.grid figure figcaption>a {
 	z-index: 1000;
 	text-indent: 200%;
 	white-space: nowrap;
@@ -94,8 +97,7 @@
 	font-weight: 800;
 }
 
-.grid figure h5,
-.grid figure p {
+.grid figure h5, .grid figure p {
 	margin: 0;
 }
 
@@ -110,10 +112,8 @@
 /*---------------*/
 /***** Ruby *****/
 /*---------------*/
-
 figure.effect-ruby {
-	background-color: #000; 
-
+	background-color: #000;
 }
 
 /* 이미지 투명도 조절 */
@@ -122,7 +122,7 @@ figure.effect-ruby img {
 	transition: opacity 0.35s, transform 0.35s;
 	-webkit-transform: scale(1.15);
 	transform: scale(1.15);
-	opacity: 0.5;
+	opacity: 0.7;
 }
 
 figure.effect-ruby:hover img {
@@ -135,19 +135,29 @@ figure.effect-ruby h2 {
 	margin-top: 20%;
 	-webkit-transition: -webkit-transform 0.35s;
 	transition: transform 0.35s;
-	-webkit-transform: translate3d(0,20px,0);
-	transform: translate3d(0,20px,0);
+	-webkit-transform: translate3d(0, 20px, 0);
+	transform: translate3d(0, 20px, 0);
 }
 
-
-	figure.effect-ruby:hover h2 {
-		-webkit-transform: translate3d(0,0,0);
-		transform: translate3d(0,0,0);
-	}
+figure.effect-ruby:hover h2 {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
 
 /* 마테리얼 아이콘 */
+.material-icons.md-48 {
+	font-size: 48px;
+}
 
-.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-35 {
+	font-size: 35px;
+}
 
-.material-icons.md-35 { font-size: 35px; }
-
+.m-line:after {
+	content: "";
+	display: block;
+	width: 60px;
+	border-bottom: 1px solid #bcbcbc;
+	margin: 20px auto;
+	text-align: center;
+}

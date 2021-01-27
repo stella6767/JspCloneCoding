@@ -5,6 +5,7 @@ import java.util.List;
 import com.cos.mangoplate.domain.board.Board;
 import com.cos.mangoplate.domain.board.BoardDao;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
+import com.cos.mangoplate.domain.board.dto.MapDto;
 
 public class BoardService {
 	
@@ -15,8 +16,17 @@ public class BoardService {
 	}
 	
 	
+	public List<MapDto> 전체위치찾기(){
+		return boardDao.findAllMap();		
+	}
+	
+	public List<AllListRespDto> 구군별맛집목록보기(String keyword){
+		return boardDao.findByGkeyword(keyword);
+	}
+	
+	
 	public List<AllListRespDto> 메뉴별맛집목록보기(String keyword){
-		return boardDao.findByKeyword(keyword);
+		return boardDao.findByMkeyword(keyword);
 	}
 	
 	
@@ -33,7 +43,7 @@ public class BoardService {
 	
 	
 	public List<AllListRespDto> 맛집목록보기() {
-		return boardDao.findList10();		
+		return boardDao.findList();		
 	}
 	
 	public List<AllListRespDto> 목록더보기(int startNum){

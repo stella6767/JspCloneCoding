@@ -8,11 +8,88 @@ import java.util.List;
 
 import com.cos.mangoplate.config.DB;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
+import com.cos.mangoplate.domain.board.dto.MapDto;
 
 
 public class BoardDao {
+		
 	
-	public List<AllListRespDto> findByKeyword(String keyword){
+	public List<MapDto> findAllMap() { //필요없다...
+		String sql = "SELECT id, lat,lng FROM matzip"; 
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MapDto> mapDtos = new ArrayList<>();
+
+		try {
+			pstmt = conn.prepareStatement(sql);		
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) { // 커서를 이동하는 함수
+				MapDto dto = new MapDto();
+				dto.setId(rs.getInt("id"));		
+				dto.setLat(rs.getDouble("lat"));
+				dto.setLng(rs.getDouble("lng"));
+
+				
+				mapDtos.add(dto); 						
+			}
+			
+			return mapDtos;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+
+		return null;		
+		
+	}
+	
+	
+	
+	public List<AllListRespDto> findByGkeyword(String keyword){
+			
+			String sql = "SELECT * FROM matzip WHERE gugun=? "; 
+			Connection conn = DB.getConnection();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			List<AllListRespDto> boards = new ArrayList<>();
+	
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, keyword);
+				
+				rs = pstmt.executeQuery();
+				while (rs.next()) { // 커서를 이동하는 함수
+					AllListRespDto dto = new AllListRespDto();
+					dto.setId(rs.getInt("id"));
+					dto.setTitle(rs.getString("title"));
+					dto.setAddr(rs.getString("addr"));
+					dto.setMainImg(rs.getString("mainimg"));
+					dto.setFoodDesc(rs.getString("fooddesc"));
+					dto.setLat(rs.getDouble("lat"));
+					dto.setLng(rs.getDouble("lng"));
+					dto.setRate(rs.getDouble("rate"));
+					dto.setReadCount(rs.getInt("readCount"));
+					
+					boards.add(dto); 						
+				}
+	
+				return boards;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				DB.close(conn, pstmt, rs);
+			}
+	
+			return null;
+			
+			
+		}
+	
+	public List<AllListRespDto> findByMkeyword(String keyword){
 		
 		String sql = "SELECT * FROM matzip WHERE title LIKE ? OR menu LIKE ? or fooddesc LIKE ? "; 
 		Connection conn = DB.getConnection();
@@ -34,6 +111,8 @@ public class BoardDao {
 				dto.setAddr(rs.getString("addr"));
 				dto.setMainImg(rs.getString("mainimg"));
 				dto.setFoodDesc(rs.getString("fooddesc"));
+				dto.setLat(rs.getDouble("lat"));
+				dto.setLng(rs.getDouble("lng"));
 				dto.setRate(rs.getDouble("rate"));
 				dto.setReadCount(rs.getInt("readCount"));
 				
@@ -160,9 +239,9 @@ public class BoardDao {
 	
 	
 	
-	public List<AllListRespDto> findList10(){
+	public List<AllListRespDto> findList(){
 		// SELECT 해서 Board 객체를 컬렉션에 담아서 리턴
-				String sql = "SELECT * FROM matzip LIMIT 0, 10";  //직관적이지는 않다....
+				String sql = "SELECT * FROM matzip";  //직관적이지는 않다....
 				Connection conn = DB.getConnection();
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
@@ -180,6 +259,8 @@ public class BoardDao {
 						dto.setAddr(rs.getString("addr"));
 						dto.setMainImg(rs.getString("mainimg"));
 						dto.setFoodDesc(rs.getString("fooddesc"));
+						dto.setLat(rs.getDouble("lat"));
+						dto.setLng(rs.getDouble("lng"));
 						dto.setRate(rs.getDouble("rate"));
 						dto.setReadCount(rs.getInt("readCount"));
 						

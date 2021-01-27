@@ -15,9 +15,11 @@ import javax.servlet.http.HttpSession;
 
 import com.cos.mangoplate.domain.board.Board;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
+import com.cos.mangoplate.domain.board.dto.MapDto;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.utill.Script;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 @WebServlet("/board")
 public class BoardController extends HttpServlet {
@@ -55,11 +57,11 @@ public class BoardController extends HttpServlet {
 			
 			System.out.println("List page");
 			List<Board> boards = boardService.전체글목록보기();			
-			request.setAttribute("boards", boards);
+			//request.setAttribute("boards", boards);
 			
 			//메뉴별 리스트
 			List<Board> breads = new ArrayList<>();
-			List<Board> hanwoo = new ArrayList<>();
+			List<Board> hanwoos = new ArrayList<>();
 			List<Board> gukbabs = new ArrayList<>();
 			List<Board> noodles = new ArrayList<>();
 			
@@ -69,7 +71,7 @@ public class BoardController extends HttpServlet {
 				}
 				
 				if(board.getFoodDesc().contains("한우")) {
-					hanwoo.add(board);
+					hanwoos.add(board);
 				}
 				
 				if(board.getFoodDesc().contains("국밥")) {
@@ -81,7 +83,7 @@ public class BoardController extends HttpServlet {
 			}
 			
 			request.setAttribute("breads", breads);
-			request.setAttribute("mandus", hanwoo);
+			request.setAttribute("hanwoos", hanwoos);
 			request.setAttribute("gukbabs", gukbabs);
 			request.setAttribute("noodles", noodles);
 			
@@ -92,6 +94,7 @@ public class BoardController extends HttpServlet {
 			System.out.println("allList page");
 			
 			List<AllListRespDto> boards = boardService.맛집목록보기();
+			//List<MapDto> dtos = boardService.전체위치찾기();
 			
 			String all = "all";
 			
@@ -110,7 +113,7 @@ public class BoardController extends HttpServlet {
 			
 			List<AllListRespDto> boards = boardService.목록더보기(startNum);
 			
-			String responseData = gson.toJson(boards);
+			String responseData = gson.toJson(boards); //제이슨화시켜주는건데 이미 boards가 자바오브젝트이므로 가능
 			Script.responseData(response, responseData);	
 		}else if(cmd.equals("detail")) {
 			System.out.println("detail page");
@@ -128,17 +131,73 @@ public class BoardController extends HttpServlet {
 		}else if(cmd.equals("subAllList")) {
 			System.out.println("subAllList");
 			
-			String keyword = request.getParameter("keyword");
-			System.out.println("키워드: "+keyword);
+			String mkeyword = request.getParameter("mkeyword");
+			String gkeyword = request.getParameter("gkeyword");
+			int cnt = Integer.parseInt(request.getParameter("cnt"));
 			
-			List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(keyword);			
+			System.out.println("키워드: "+mkeyword+gkeyword);
 			
-			System.out.println(boards);
+			if(gkeyword != null) {				
+				List<AllListRespDto> boards = boardService.구군별맛집목록보기(gkeyword);
+				request.setAttribute("keyword", gkeyword);
+				request.setAttribute("cnt", cnt);
+				request.setAttribute("keyType","구군");
+				request.setAttribute("boards", boards);		
+				
+			}else {
+				List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(mkeyword);					
+				request.setAttribute("keyword", mkeyword);		
+				request.setAttribute("cnt", cnt);
+				request.setAttribute("keyType", "메뉴");
+				request.setAttribute("boards", boards);
+				
+			}
 			
-			request.setAttribute("boards", boards);
+			
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
 			dis.forward(request, response);	
+			
+		}else if(cmd.equals("findMap")) {
+			System.out.println("findMap");
+			
+			
+			BufferedReader br = request.getReader(); // http body 데이터 순수하게 읽기
+			String requestData = null;
+
+			while((requestData = br.readLine()) != null) {
+				System.out.println(requestData);
+			}			
+			
+			Gson gson = new Gson();
+			
+			
+			
+			
+			
+			
+			//List<AllListRespDto> boards  = gson.fromJson(requestData, new TypeToken<List<AllListRespDto>>(){}.getType());
+			
+			
+			
+			/*
+			 * String keyword = request.getParameter("keyword"); String keyType =
+			 * request.getParameter("keyType");
+			 * System.out.println("키워드 키타입: "+keyword+"  "+keyType);
+			 * 
+			 * if(keyword == null && keyType == null) { List<AllListRespDto> boards =
+			 * boardService.맛집목록보기(); String responseData = gson.toJson(boards);
+			 * Script.responseData(response, responseData); }else if(keyType.equals("메뉴")){
+			 * 
+			 * List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(keyword); String
+			 * responseData = gson.toJson(boards); Script.responseData(response,
+			 * responseData); }else{ List<AllListRespDto> boards =
+			 * boardService.구군별맛집목록보기(keyword); String responseData = gson.toJson(boards);
+			 * Script.responseData(response, responseData);
+			 * 
+			 * }
+			 */
+
 			
 		}
 		
