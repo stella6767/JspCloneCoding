@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
 
@@ -46,19 +47,16 @@ public class ReviewController extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		if(cmd.equals("saveForm")) {
-			
-			//User principal = (User) session.getAttribute("principal");
-//			if (principal != null) {
-//				RequestDispatcher dis = request.getRequestDispatcher("review/saveForm.jsp");
-//				dis.forward(request, response);
-//			} else {
-//				RequestDispatcher dis = request.getRequestDispatcher("user/loginForm.jsp");
-//				dis.forward(request, response);
-//			}
 
 			
 			RequestDispatcher dis = request.getRequestDispatcher("review/saveForm.jsp");
 			dis.forward(request, response);
+			
+		}else if(cmd.equals("save")) {
+
+			String content = request.getParameter("content");
+						
+			System.out.println("save: " + content);
 			
 		}
 		

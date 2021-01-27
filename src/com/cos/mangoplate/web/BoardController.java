@@ -160,22 +160,23 @@ public class BoardController extends HttpServlet {
 			
 		}else if(cmd.equals("findMap")) {
 			System.out.println("findMap");
-			
-			
 			BufferedReader br = request.getReader(); // http body 데이터 순수하게 읽기
 			String requestData = null;
-
 			while((requestData = br.readLine()) != null) {
 				System.out.println(requestData);
 			}			
-			
 			Gson gson = new Gson();
 	
 			
-		}else if(cmd.equals("")) {
+		}else if(cmd.equals("search")) {
+			System.out.println("search");
 			
+			String keyword = request.getParameter("keyword");
 			
+			System.out.println(keyword);
 			
+			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
+			dis.forward(request, response);	
 		}
 		
 		

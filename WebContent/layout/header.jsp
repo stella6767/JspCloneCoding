@@ -46,9 +46,11 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- 카카오지도APi -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=12353cd710be446e6ea6b13e46d6a960"></script>
-	<!-- summer note -->
+	<!-- summer editor -->
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
+	
 </head>
 
 
