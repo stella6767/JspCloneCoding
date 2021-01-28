@@ -1,4 +1,4 @@
-package com.cos.mangoplate.domain.review;
+package com.cos.mangoplate.domain.user;
 
 import java.sql.Timestamp;
 
@@ -11,13 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Review {
+public class User {
 	private int id;
-	private int userId;
-	private int boardId;
-	private String title;
-	private String content;
+	private String username;
+	private String password;
+	private String email;
+	private String userRole; // admin, user
 	private Timestamp createDate;
-	private Timestamp updateDate;
-
 }

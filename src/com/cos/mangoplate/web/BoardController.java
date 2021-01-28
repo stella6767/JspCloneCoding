@@ -3,6 +3,7 @@ package com.cos.mangoplate.web;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -158,23 +159,34 @@ public class BoardController extends HttpServlet {
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
 			dis.forward(request, response);	
 			
-		}else if(cmd.equals("findMap")) {
-			System.out.println("findMap");
-			BufferedReader br = request.getReader(); // http body 데이터 순수하게 읽기
-			String requestData = null;
-			while((requestData = br.readLine()) != null) {
-				System.out.println(requestData);
-			}			
-			Gson gson = new Gson();
-	
-			
 		}else if(cmd.equals("search")) {
 			System.out.println("search");
-			
 			String keyword = request.getParameter("keyword");
-			System.out.println(keyword);
+			
+			int page = Integer.parseInt(request.getParameter("page"));
+			
+			System.out.println("키워드와 페이지:  " + keyword + "  " + page);
+			
+			List<AllListRespDto> boards = boardService.검색목록보기(keyword,page);
+			int boardCount = boardService.글개수(keyword);
+			
+			int lastPage;
+			
+			if(boardCount%10 == 0) {
+				lastPage = ((boardCount)/10);		
+			}else {
+				lastPage = ((boardCount)/10)+1;
+			}
 			
 			
+			System.out.println("글개수: " + boardCount);
+			System.out.println("lastpage: " + lastPage);
+			
+			request.setAttribute("page", page);
+			request.setAttribute("keyword", keyword);
+			request.setAttribute("boards", boards);
+			request.setAttribute("lastpage", lastPage);
+			request.setAttribute("boardCount", boardCount);
 			
 			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
 			dis.forward(request, response);	

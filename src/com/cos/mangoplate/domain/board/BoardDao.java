@@ -9,11 +9,42 @@ import java.util.List;
 import com.cos.mangoplate.config.DB;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.domain.board.dto.MapDto;
+import com.cos.mangoplate.domain.review.dto.TestReviewDto;
 
 
 public class BoardDao {
+	
+	public List<TestReviewDto> findAll(int boardId){ //이거 잠깐만..
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT r.*, u.username ");
+		sb.append("FROM review r inner join user u ");
+		sb.append("on r.userid = u.id ");
+		sb.append("WHERE r.boardId = ? ORDER BY r.id DESC");
+		String sql = sb.toString();		
 		
-	public List<Board> searByKeyword(String keyword){
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs  = null;
+
+		List<TestReviewDto> replys = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardId);
+			rs =  pstmt.executeQuery();
+
+			// Persistence API
+			while(rs.next()) { // 커서를 이동하는 함수
+				TestReviewDto reply = new TestReviewDto();
+
+				replys.add(reply);
+			}
+			return replys;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt, rs);
+		}
+		return null;
 		
 		
 		
@@ -22,28 +53,26 @@ public class BoardDao {
 	
 	
 	
-	public List<MapDto> findAllMap() { //필요없다...
-		String sql = "SELECT id, lat,lng FROM matzip"; 
+	
+	
+	public int count(String keyword) {
+		String sql = "SELECT count(*) FROM matzip where place LIKE ? OR gugun LIKE ? OR menu LIKE ? OR fooddesc LIKE ? or addr like ? ";
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<MapDto> mapDtos = new ArrayList<>();
+		int num = 0;
 
 		try {
-			pstmt = conn.prepareStatement(sql);		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setString(3, "%" + keyword + "%");
+			pstmt.setString(4, "%" + keyword + "%");
+			pstmt.setString(5, "%" + keyword + "%");
 			rs = pstmt.executeQuery();
-			
-			while (rs.next()) { // 커서를 이동하는 함수
-				MapDto dto = new MapDto();
-				dto.setId(rs.getInt("id"));		
-				dto.setLat(rs.getDouble("lat"));
-				dto.setLng(rs.getDouble("lng"));
-
-				
-				mapDtos.add(dto); 						
+			if (rs.next()) { // 커서를 이동하는 함수
+				return rs.getInt(1);
 			}
-			
-			return mapDtos;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -51,9 +80,63 @@ public class BoardDao {
 			DB.close(conn, pstmt, rs);
 		}
 
-		return null;		
+		return -1;
+
+	}
+	
+	
+		
+	public List<AllListRespDto> searchByKeyword(String keyword,int page){
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT * FROM matzip ");
+		sb.append("where place LIKE ? OR gugun LIKE ? OR menu LIKE ? OR fooddesc LIKE ? or addr like ?");
+		sb.append("ORDER BY Id asc LIMIT ?,10 ");
+
+		String sql = sb.toString();		
+
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AllListRespDto> boards = new ArrayList<>();
+		page= page-1;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);		
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setString(2, "%" + keyword + "%");
+			pstmt.setString(3, "%" + keyword + "%");
+			pstmt.setString(4, "%" + keyword + "%");
+			pstmt.setString(5, "%" + keyword + "%");
+			pstmt.setInt(6, page*10);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) { // 커서를 이동하는 함수
+				AllListRespDto dto = new AllListRespDto();
+				dto.setId(rs.getInt("id"));
+				dto.setTitle(rs.getString("title"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setMainImg(rs.getString("mainimg"));
+				dto.setFoodDesc(rs.getString("fooddesc"));
+				dto.setLat(rs.getDouble("lat"));
+				dto.setLng(rs.getDouble("lng"));
+				dto.setRate(rs.getDouble("rate"));
+				dto.setReadCount(rs.getInt("readCount"));
+				boards.add(dto); 						
+			}
+			
+			return boards;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+
+		return null;				
 		
 	}
+	
 	
 	
 	

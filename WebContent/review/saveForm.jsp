@@ -58,7 +58,7 @@
 										class="nav-link font-weight-bold"
 										href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
 									<li class="nav-item"><a class="nav-link font-weight-bold"
-										href="#">망고 스토리</a></li>
+										href="#">로그인</a></li>
 									<li><i
 										class="large material-icons text-white md-48 m-circle">account_circle</i></li>
 								</ul>
@@ -74,12 +74,17 @@
 	<!--//END HEADER -->
 
 
-	<div class="container">
+	<div class="container" style="margin-top: 100px;">
+		
 		<form action="/mangoplate/review?cmd=save" method="POST">
 			<input type="hidden" name="userId"
 				value="${sessionScope.principal.id}" />
+				<input type="hidden" name="boardId" value="${boardId}" />
+				<label for="title"><h3 class="font-weight-bold text-primary">${title}<small class="text-dark">에 대한 솔직한 리뷰를 써주세요.</small></h3></label>
 			<div class="form-group">
-				<label for="title">에 대한 솔직한 리뷰를 써주세요.</label> 
+			<label for="title">Title:</label> 
+			<input type="text" class="form-control" placeholder="title" id="title" name="title">
+				 
 			</div>
 
 			<div class="form-group">
@@ -90,6 +95,7 @@
 			<button type="submit" class="btn default">리뷰 올리기</button>
 			</div>
 		</form>
+	
 	</div>
 
 
@@ -101,7 +107,7 @@
 		$('#summernote').summernote({
 			placeholder : '주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!',
 			tabsize : 2,
-			height : 400
+			height : 300
 		});
 	</script>
 

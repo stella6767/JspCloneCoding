@@ -1,6 +1,14 @@
+<%@page import="com.google.gson.Gson"%>
+<%@page import="com.cos.mangoplate.domain.board.Board"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
+<c:set var="boardsSize" value="${fn:length(boards)}" />
 
 
 <!--============================= DETAIL =============================-->
@@ -12,7 +20,7 @@
 					<div class="col-md-4 featured-responsive">
 						<div class="detail-filter-text">
 							<p>
-								34 Results For <span>부대찌개</span>
+								${boardCount} Results For <span>${keyword}</span>
 							</p>
 						</div>
 					</div>
@@ -20,94 +28,69 @@
 						<div class="detail-filter ">
 							<p>Filter by</p>
 							<form class="filter-dropdown">
-								<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-									<option selected>Best Match</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
-							</form>
-							<form class="filter-dropdown">
 								<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect1">
-									<option selected>Restaurants</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
+									<option selected>default</option>
+									<option value="1">높은순</option>
+									<option value="2">낮은순</option>
 								</select>
-							</form>
-							<div class="map-responsive-wrap">
-								<a class="map-icon" href="#"><span class="icon-location-pin"></span></a>
-							</div>
+								<div class="map-responsive-wrap">
+									<a class="map-icon" href="#"><span class="icon-location-pin"></span></a>
+								</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="row detail-options-wrap">
-					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured1.jpg" class="img-box" alt="#">
-								<div class="featured-title-box">
-									<h5>오스틴 6.5</h5>
-									<h6>강남역-스테이크/바베큐</h6>
-									<span class="featured-rating-orange ">6.5</span>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
-								<div class="featured-title-box">
-									<div class="featured-title-box">
-										<h5>오스틴 6.5</h5>
-										<h6>강남역-스테이크/바베큐</h6>
-										<span class="featured-rating-orange ">6.5</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
 
-					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
-								<div class="featured-title-box">
-									<div class="featured-title-box">
-										<h5>오스틴 6.5</h5>
-										<h6>강남역-스테이크/바베큐</h6>
-										<span class="featured-rating-orange ">6.5</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
+					<c:forEach var="board" items="${boards}">
 
-					<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
-						<div class="featured-place-wrap">
-							<a href="detail.html"> <img src="<%= request.getContextPath() %>/images/featured2.jpg" class="img-fluid" alt="#">
-								<div class="featured-title-box">
-									<div class="featured-title-box">
-										<h5>오스틴 6.5</h5>
-										<h6>강남역-스테이크/바베큐</h6>
-										<span class="featured-rating-orange ">6.5</span>
+						<div class="col-sm-6 col-lg-12 col-xl-6 featured-responsive">
+							<div class="featured-place-wrap">
+								<a href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}"> <img src="${board.mainImg}" class="img-box" alt="#">
+									<div class="featured-title-box mt-2">
+										<h5>${board.title}</h5>
+										<h7 class="text-muted">${board.addr}</h7>
+										<div>
+											<h7>${board.rate} ${board.readCount}</h7>
+										</div>
 									</div>
-								</div>
-							</a>
+								</a>
+							</div>
 						</div>
-					</div>
+
+
+					</c:forEach>
 
 
 				</div>
 
+
+
+
+
 				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<c:forEach varStatus="status" begin="1" end="${lastpage}">
+
+						<c:choose>
+							<c:when test="${page eq status.current}">
+								<li class=" page-item active"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=search&keyword=${keyword}&page=${status.current}"> ${status.current} </a></li>
+							</c:when>
+
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board?cmd=search&keyword=${keyword}&page=${status.current}"> ${status.current} </a></li>
+							</c:otherwise>
+						</c:choose>
+
+
+					</c:forEach>
 				</ul>
+
 			</div>
-			<div class="col-md-4 responsive-wrap map-wrap">
-				<div class="map-fix"></div>
-				<div></div>
+			<div class="col-md-4 responsive-wrap map-wrap mt-5">
+				<div id="map" style="width: 100%; height: 600px;"></div>
+				<div>
+			
+				</div>
 			</div>
 		</div>
 	</div>
@@ -116,16 +99,25 @@
 <!--//END DETAIL -->
 
 
+ 			<%
+				List<Board> newBoards = (List<Board>) request.getAttribute("boards");
+ 				Gson gson = new Gson();
+ 				String jsonData = gson.toJson(newBoards);
+			%>
 
+<script>
+var jsonBoards = '<%=jsonData%>';
+
+</script>
 
 
 <%@ include file="../layout/footer.jsp"%>
 
 
-<script src="<%= request.getContextPath() %>/js/jquery.magnific-popup.js"></script>
-<script src="<%= request.getContextPath() %>/js/swiper.js"></script>
-<script src="<%= request.getContextPath() %>/js/subHeader.js"></script>
-
+<script src="<%=request.getContextPath()%>/js/jquery.magnific-popup.js"></script>
+<script src="<%=request.getContextPath()%>/js/swiper.js"></script>
+<script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
+<script src="<%=request.getContextPath()%>/js/kakaoMapApi.js"></script> 
 
 
 </body>

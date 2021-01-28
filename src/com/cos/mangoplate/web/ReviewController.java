@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import com.cos.mangoplate.domain.review.dto.TestReviewDto;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
 
@@ -47,7 +47,12 @@ public class ReviewController extends HttpServlet{
 		HttpSession session = request.getSession();
 		
 		if(cmd.equals("saveForm")) {
-
+			String title = request.getParameter("title");
+			int boardId = Integer.parseInt(request.getParameter("boardId")); 
+			System.out.println("title value: " + title);
+			
+			request.setAttribute("title", title);
+			request.setAttribute("boardId", boardId);
 			
 			RequestDispatcher dis = request.getRequestDispatcher("review/saveForm.jsp");
 			dis.forward(request, response);
@@ -55,8 +60,20 @@ public class ReviewController extends HttpServlet{
 		}else if(cmd.equals("save")) {
 
 			String content = request.getParameter("content");
-						
-			System.out.println("save: " + content);
+			int boardId = Integer.parseInt(request.getParameter("boardId")); 
+			System.out.println("save: " + content+" "+boardId);
+			
+			TestReviewDto dto = new TestReviewDto();
+			
+			dto.setBoardId(boardId);
+			dto.setContent(content);
+			
+			int result = reviewService.리뷰작성(dto);
+			
+			
+			RequestDispatcher dis = request.getRequestDispatcher("/board?cmd=detail&id="+boardId);
+			dis.forward(request, response);
+			
 			
 		}
 		

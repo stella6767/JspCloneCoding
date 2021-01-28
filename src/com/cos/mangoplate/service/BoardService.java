@@ -15,9 +15,12 @@ public class BoardService {
 		boardDao = new BoardDao();
 	}
 	
+	public int 글개수(String keyword) {
+		return boardDao.count(keyword);
+	}
 	
-	public List<MapDto> 전체위치찾기(){
-		return boardDao.findAllMap();		
+	public List<AllListRespDto> 검색목록보기(String keyword,int page){
+		return boardDao.searchByKeyword(keyword,page);		
 	}
 	
 	public List<AllListRespDto> 구군별맛집목록보기(String keyword){

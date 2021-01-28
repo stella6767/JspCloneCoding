@@ -19,7 +19,7 @@
 					</div>
 					<div class="row d-flex justify-content-center">
 						<div class="col-md-10">
-							<form action="/mangoplate/board?cmd=search" method="POST" class="form-wrap mt-4">
+							<form action="/mangoplate/board?cmd=search&page=1" method="POST" class="form-wrap mt-4">
 								<div class="btn-group " role="group" aria-label="Basic example">
 									<input type="text" placeholder="지역, 식당 또는 음식" class="btn-group1" name="keyword" style="outline: none;"> <i class="material-icons">search</i>
 									<button type="submit" class="btn-form">검색</button>

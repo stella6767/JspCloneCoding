@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Script {
 	
+	
 	public static void responseData(HttpServletResponse resp, String jsonData) throws IOException { 		
 		//나중에 CommonRespDto<T> jsonData
 		PrintWriter out;
@@ -42,7 +43,7 @@ public class Script {
 		
 	}
 	
-	
+
 	
 	
 }
