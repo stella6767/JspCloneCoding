@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.mangoplate.domain.user.User;
 import com.cos.mangoplate.domain.user.dto.JoinReqDto;
 import com.cos.mangoplate.domain.user.dto.LoginReqDto;
+import com.cos.mangoplate.domain.user.dto.UpdateReqDto;
 import com.cos.mangoplate.service.UserService;
 import com.cos.mangoplate.utill.Script;
 
@@ -101,12 +102,46 @@ public class UserController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("index.jsp");
-		}else if(cmd.equals("jusoPopup")) {
+		}else if(cmd.equals("updateForm")) { //회원정보 들어가기
+			
 			RequestDispatcher dis = 
-					request.getRequestDispatcher("user/jusoPopup.jsp");
-				dis.forward(request, response);	
-		}
+					request.getRequestDispatcher("user/updateForm.jsp");
+				dis.forward(request, response);						
+		}else if(cmd.equals("update")) {
+			
+			int id = Integer.parseInt(request.getParameter("id"));
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String email = request.getParameter("email");
+			
+			UpdateReqDto dto = new UpdateReqDto();
+			
+			dto.setUsername(username);
+			dto.setId(id);
+			dto.setPassword(password);
+			dto.setEmail(email);
 		
+			int result = userService.회원수정(dto);
+			
+			if (result == 1) {
+				response.sendRedirect("index.jsp");
+			} else {
+				Script.back(response, "회원수정 실패");
+			}
+			
+			
+		}else if(cmd.equals("delete")) {
+			System.out.println("유저 삭제");			
+			int id = Integer.parseInt(request.getParameter("id"));
+			int result = userService.회원삭제(id);
+			
+			if (result == 1) {
+				response.sendRedirect("index.jsp");
+			} else {
+				Script.back(response, "회원삭제 실패");
+			}
+						
+		}
 		
 		
 		

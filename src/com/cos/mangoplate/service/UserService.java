@@ -14,6 +14,11 @@ public class UserService {
 		userDao = new UserDao();
 	}
 	
+	public int 회원삭제(int id) {
+		return userDao.deleteById(id);
+	}
+	
+	
 	public int 회원가입(JoinReqDto dto) {
 		
 		int result = userDao.save(dto);
@@ -27,7 +32,7 @@ public class UserService {
 	
 	public int 회원수정(UpdateReqDto dto) {
 		
-		return -1;
+		return userDao.update(dto);
 	}
 
 	public int 유저네임중복체크(String username) {

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import com.cos.mangoplate.config.DB;
 import com.cos.mangoplate.domain.user.dto.JoinReqDto;
 import com.cos.mangoplate.domain.user.dto.LoginReqDto;
+import com.cos.mangoplate.domain.user.dto.UpdateReqDto;
 
 
 
@@ -14,7 +15,7 @@ public class UserDao {
 
 
 	public User findByUsernameAndPassword(LoginReqDto dto) {
-		String sql = "SELECT id,username,email FROM user WHERE username = ? AND password = ?";
+		String sql = "SELECT id,username,email,userRole,createDate FROM user WHERE username = ? AND password = ?";
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -31,6 +32,8 @@ public class UserDao {
 						.id(rs.getInt("id"))
 						.username(rs.getString("username"))
 						.email(rs.getString("email"))
+						.userRole(rs.getString("userRole"))
+						.createDate(rs.getTimestamp("createDate"))
 						.build();
 				return user;
 				
@@ -85,17 +88,50 @@ public class UserDao {
 		}
 		return -1;
 	}
-	public void update() { // 회원수정
-
+	
+	
+	
+	public int update(UpdateReqDto dto) { // 회원수정
+		
+		String sql = "UPDATE user SET username = ?, password=?, email=? where id = ? ";
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUsername());
+			pstmt.setString(2, dto.getPassword());
+			pstmt.setString(3, dto.getEmail());
+			pstmt.setInt(4, dto.getId());
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { // 무조건 실행
+			DB.close(conn, pstmt);
+		}
+		return -1;
 	}
 
-	public void usernameCheck() { // 아이디 중복 체크
 
-	}
 
-	public void findById() { // 회원정보보기
-
-	}
+	public int deleteById(int id) {
+			
+			String sql = "delete FROM user WHERE id = ?";
+			Connection conn = DB.getConnection();
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, id);
+				int result = pstmt.executeUpdate();
+				return result;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally { // 무조건 실행
+				DB.close(conn, pstmt);
+			}
+			return -1;
+			
+		}
 	
 	
 	
