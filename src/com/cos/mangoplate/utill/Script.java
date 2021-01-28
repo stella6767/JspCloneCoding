@@ -27,6 +27,8 @@ public class Script {
 	
 	public static void back(HttpServletResponse resp, String msg) throws IOException { 		
 		
+		resp.setCharacterEncoding("utf-8");
+		
 		PrintWriter out;
 		
 		try {
@@ -42,6 +44,12 @@ public class Script {
 
 		
 	}
+	
+	
+
+		
+	
+	
 	
 
 	

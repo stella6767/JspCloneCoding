@@ -12,6 +12,7 @@
 				<div class="signup-form">
 					<h2 class="form-title">회원정보</h2>
 					<form method="POST" class="register-form"  action="/mangoplate/user?cmd=update" >
+						<input type ="hidden" name="id" value ="${sessionScope.principal.id}">
 						<div class="form-group d-flex">
 							<label for="name"> <i class="material-icons">person</i></label> <input type="text" name="username" placeholder="${sessionScope.principal.username}" value="${sessionScope.principal.username}" />
 
@@ -37,9 +38,9 @@
 						<img src="<%=request.getContextPath()%>/images/welcome.jpg" alt="sing up image">
 					</figure>
 					<div class="text-center">
-						<form action="user?cmd=delete" method="post" >
+						<form action="/mangoplate/user?cmd=delete" method="post" >
 							<input type="hidden" name="id" value="${sessionScope.principal.id}" />
-							<button type="button" class="btn btn-outline-danger">계정을 삭제하시겠습니까?</button>
+							<button type="submit" class="btn btn-outline-danger">계정을 삭제하시겠습니까?</button>
 						</form>
 
 					</div>

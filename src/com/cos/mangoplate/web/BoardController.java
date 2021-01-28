@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
 import com.cos.mangoplate.domain.board.Board;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.domain.board.dto.MapDto;
+import com.cos.mangoplate.domain.review.dto.SaveRespDto;
 import com.cos.mangoplate.service.BoardService;
+import com.cos.mangoplate.service.ReviewService;
 import com.cos.mangoplate.utill.Script;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -47,18 +49,27 @@ public class BoardController extends HttpServlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		String cmd = request.getParameter("cmd");
-		
+		String cmd = request.getParameter("cmd");	
 		BoardService boardService = new BoardService();
-		
+		ReviewService reviewService = new ReviewService();
 		HttpSession session = request.getSession();
-		
+	
 		
 		if(cmd.equals("mainList")) {
 			
 			System.out.println("List page");
 			List<Board> boards = boardService.전체글목록보기();			
 			//request.setAttribute("boards", boards);
+			
+////			String userUpdate = (String) session.getAttribute("userUpdate");
+////			System.out.println("되나?" + userUpdate);
+//			
+//			if(userUpdate != null) {
+//				//session.removeAttribute("userUpdate");
+//				//request.setAttribute("userUpdate", userUpdate);			
+//			}
+			
+			
 			
 			//메뉴별 리스트
 			List<Board> breads = new ArrayList<>();
@@ -122,13 +133,20 @@ public class BoardController extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			Board board = boardService.글상세보기(id);
+			List<SaveRespDto> reviews = reviewService.리뷰목록보기(id);
 			
-			//리뷰글도 같이 오도록 로직
+			if(board == null) {
+				Script.back(response, "상세보기에 실패하였습니다.");
+				
+			}else {
+				request.setAttribute("board", board);
+				request.setAttribute("review",reviews);
+				
+				RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
+				dis.forward(request, response);				
+			}
 			
-			request.setAttribute("board", board);
-			
-			RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
-			dis.forward(request, response);	
+	
 		}else if(cmd.equals("subAllList")) {
 			System.out.println("subAllList");
 			

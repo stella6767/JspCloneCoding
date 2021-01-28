@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.cos.mangoplate.domain.review.dto.SaveRespDto;
 import com.cos.mangoplate.domain.review.dto.TestReviewDto;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
@@ -63,7 +64,7 @@ public class ReviewController extends HttpServlet{
 			int boardId = Integer.parseInt(request.getParameter("boardId")); 
 			System.out.println("save: " + content+" "+boardId);
 			
-			TestReviewDto dto = new TestReviewDto();
+			SaveRespDto dto = new SaveRespDto();
 			
 			dto.setBoardId(boardId);
 			dto.setContent(content);

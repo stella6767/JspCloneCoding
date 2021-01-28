@@ -42,6 +42,9 @@ public class UserController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		UserService userService = new UserService();
 		// http://localhost:8080/blog/user?cmd=loginForm
+		
+		HttpSession session = request.getSession();
+		
 		if(cmd.equals("loginForm")) {
 			RequestDispatcher dis = 
 					request.getRequestDispatcher("user/loginForm.jsp");
@@ -56,7 +59,7 @@ public class UserController extends HttpServlet {
 			
 			User userEntity = userService.로그인(dto);
 			if(userEntity != null) {
-				HttpSession session = request.getSession();
+				//HttpSession session = request.getSession();
 				session.setAttribute("principal", userEntity); //인증주체
 				response.sendRedirect("index.jsp"); //index는 유일한 예외
 			}else {
@@ -99,7 +102,7 @@ public class UserController extends HttpServlet {
 			}
 			out.flush();
 		}else if(cmd.equals("logout")) {
-			HttpSession session = request.getSession();
+			//HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect("index.jsp");
 		}else if(cmd.equals("updateForm")) { //회원정보 들어가기
@@ -114,17 +117,27 @@ public class UserController extends HttpServlet {
 			String password = request.getParameter("password");
 			String email = request.getParameter("email");
 			
-			UpdateReqDto dto = new UpdateReqDto();
+			UpdateReqDto updateReqDto = new UpdateReqDto();
 			
-			dto.setUsername(username);
-			dto.setId(id);
-			dto.setPassword(password);
-			dto.setEmail(email);
-		
-			int result = userService.회원수정(dto);
+			updateReqDto.setUsername(username);
+			updateReqDto.setId(id);
+			updateReqDto.setPassword(password);
+			updateReqDto.setEmail(email);
 			
-			if (result == 1) {
-				response.sendRedirect("index.jsp");
+			int result = userService.회원수정(updateReqDto); 
+			
+			//LoginReqDto dto = new LoginReqDto();
+			//User userEntity = userService.로그인(dto);			
+			//session.removeAttribute("principal");  어떻게 해야지..
+			//session.setAttribute("principal", userEntity);
+
+			
+			if (result == 1) {	
+				//session.setAttribute("userUpdate", "userUpdate");
+				session.invalidate();
+				RequestDispatcher dis = 
+						request.getRequestDispatcher("/board?cmd=mainList");
+					dis.forward(request, response);		
 			} else {
 				Script.back(response, "회원수정 실패");
 			}
@@ -135,7 +148,10 @@ public class UserController extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			int result = userService.회원삭제(id);
 			
+			//HttpSession session = request.getSession();
+			
 			if (result == 1) {
+				session.invalidate();
 				response.sendRedirect("index.jsp");
 			} else {
 				Script.back(response, "회원삭제 실패");

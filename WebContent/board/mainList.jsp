@@ -378,6 +378,18 @@
 <script src="<%=request.getContextPath()%>/js/mainHeader.js"></script>
 <script src="<%=request.getContextPath()%>/js/swiper.js"></script>
 
+<script>
+	var userUpdate = '${userUpdate}' ;
+	
+	console.log(userUpdate);
+	
+	if(userUpdate){
+		alert("유저정보가 변경되었습니다. 다시 로그인하여 주십시오.");
+	}
+	
+
+</script>
+
 </body>
 
 </html>
