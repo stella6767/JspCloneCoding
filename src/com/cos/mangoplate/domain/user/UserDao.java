@@ -15,7 +15,7 @@ public class UserDao {
 
 
 	public User findByUsernameAndPassword(LoginReqDto dto) {
-		String sql = "SELECT id,username,email,userRole,createDate FROM user WHERE username = ? AND password = ?";
+		String sql = "SELECT id,username,password, email,userRole,createDate FROM user WHERE username = ? AND password = ?";
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -31,6 +31,7 @@ public class UserDao {
 				User user = User.builder()
 						.id(rs.getInt("id"))
 						.username(rs.getString("username"))
+						.password(rs.getString("password"))  //이걸 빼먹었구나..
 						.email(rs.getString("email"))
 						.userRole(rs.getString("userRole"))
 						.createDate(rs.getTimestamp("createDate"))

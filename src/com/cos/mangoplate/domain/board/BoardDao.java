@@ -247,47 +247,47 @@ public class BoardDao {
 	
 	public Board findById(int id) {
 		
-				String sql = "SELECT * FROM matzip where id = ?";  
-				Connection conn = DB.getConnection();
-				PreparedStatement pstmt = null;
-				ResultSet rs = null;
-	
-				try {
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, id);
-					rs = pstmt.executeQuery();
-					while (rs.next()) { // 커서를 이동하는 함수
-						
-						Board board = Board.builder()
-								.id(rs.getInt("id"))
-								.title(rs.getString("title"))
-								.gugun(rs.getString("gugun"))
-								.lat(rs.getDouble("lat"))
-								.lng(rs.getDouble("lng"))
-								.place(rs.getString("place"))
-								.addr(rs.getString("addr"))
-								.tel(rs.getString("tel"))
-								.url(rs.getString("url"))
-								.usageTime(rs.getString("usagetime"))
-								.menu(rs.getString("menu"))
-								.mainImg(rs.getString("mainimg"))
-								.subImg(rs.getString("subimg"))
-								.foodDesc(rs.getString("fooddesc"))
-								.rate(rs.getDouble("rate"))
-								.readCount(rs.getInt("readCount"))
-								.build();
-						
-						return board;
-					}
+		String sql = "SELECT * FROM matzip where id = ?";  
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-				} catch (Exception e) {
-					e.printStackTrace();
-				} finally {
-					DB.close(conn, pstmt, rs);
-				}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // 커서를 이동하는 함수
+				
+				Board board = Board.builder()
+						.id(rs.getInt("id"))
+						.title(rs.getString("title"))
+						.gugun(rs.getString("gugun"))
+						.lat(rs.getDouble("lat"))
+						.lng(rs.getDouble("lng"))
+						.place(rs.getString("place"))
+						.addr(rs.getString("addr"))
+						.tel(rs.getString("tel"))
+						.url(rs.getString("url"))
+						.usageTime(rs.getString("usagetime"))
+						.menu(rs.getString("menu"))
+						.mainImg(rs.getString("mainimg"))
+						.subImg(rs.getString("subimg"))
+						.foodDesc(rs.getString("fooddesc"))
+						.rate(rs.getDouble("rate"))
+						.readCount(rs.getInt("readCount"))
+						.build();
+				
+				return board;
+			}
 
-				return null;
-		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+
+		return null;
+
 		
 	}
 	

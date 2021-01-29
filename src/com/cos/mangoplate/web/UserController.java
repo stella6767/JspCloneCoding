@@ -133,7 +133,7 @@ public class UserController extends HttpServlet {
 
 			
 			if (result == 1) {	
-				//session.setAttribute("userUpdate", "userUpdate");
+				request.setAttribute("userUpdate", "userUpdate");
 				session.invalidate();
 				RequestDispatcher dis = 
 						request.getRequestDispatcher("/board?cmd=mainList");

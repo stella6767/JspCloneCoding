@@ -58,7 +58,7 @@ function usernameCheck(){
 
 		$.ajax({
 			type: "POST",
-			url: "/blog/user?cmd=usernameCheck",
+			url: "/mangoplate/user?cmd=usernameCheck",
 			data: username,
 			contentType: "text/plain; charset=utf-8",
 			dataType: "text"  // 응답 받을 데이터의 타입을 적으면 자바스크립트 오브젝트로 파싱해줌.

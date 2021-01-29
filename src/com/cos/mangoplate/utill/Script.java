@@ -27,7 +27,7 @@ public class Script {
 	
 	public static void back(HttpServletResponse resp, String msg) throws IOException { 		
 		
-		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("text/html; charset=utf-8"); //한글깨짐 방지..
 		
 		PrintWriter out;
 		

@@ -50,18 +50,24 @@
 							</button>
 							<div class="collapse navbar-collapse justify-content-end"
 								id="SearchForm">
-								<ul class="navbar-nav">
-									<li class="nav-item active"><a
-										class="nav-link font-weight-bold" href="#">EAT딜</a></li>
-
-									<li class="nav-item active"><a
-										class="nav-link font-weight-bold"
-										href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
-									<li class="nav-item"><a class="nav-link font-weight-bold"
-										href="#">로그인</a></li>
-									<li><i
-										class="large material-icons text-white md-48 m-circle">account_circle</i></li>
-								</ul>
+								<c:choose>
+									<c:when test="${sessionScope.principal != null}">
+										<ul class="navbar-nav">
+											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=updateForm"> 회원정보</a></li>
+											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
+											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=logout">로그아웃</a></li>
+											<li><i class="large material-icons text-white md-48 m-circle">account_circle</i></li>
+										</ul>
+									</c:when>
+									<c:otherwise>
+										<ul class="navbar-nav">
+											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=joinForm"> 회원가입</a></li>
+											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
+											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=loginForm">로그인</a></li>
+											<li><i class="large material-icons text-white md-48 m-circle">account_circle</i></li>
+										</ul>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</nav>
 					</div>

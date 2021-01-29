@@ -50,7 +50,6 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-
 </head>
 
 
@@ -80,7 +79,7 @@
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=updateForm"> 회원정보</a></li>
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
 											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=logout">로그아웃</a></li>
-											<li><i class="large material-icons text-white md-48 m-circle">account_circle</i></li>
+											<li><button class="btn default" ><i class="large material-icons text-white md-48 m-circle " >account_circle</i></button></li>
 										</ul>
 									</c:when>
 									<c:otherwise>
@@ -88,7 +87,7 @@
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=joinForm"> 회원가입</a></li>
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
 											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=loginForm">로그인</a></li>
-											<li><i class="large material-icons text-white md-48 m-circle">account_circle</i></li>
+											<li><button class="btn default" ><i class="large material-icons text-white md-48 m-circle " >account_circle</i></button></li>
 										</ul>
 									</c:otherwise>
 								</c:choose>
@@ -102,3 +101,4 @@
 	</div>
 
 	<!--//END HEADER -->
+	

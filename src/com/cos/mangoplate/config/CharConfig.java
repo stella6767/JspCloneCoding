@@ -20,7 +20,7 @@ public class CharConfig implements Filter{
 		
      	request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8"); //한글깨지는 거 방지
+		//response.setContentType("text/html; charset=utf-8"); //한글깨지는 거 방지.. 이상하게 css가 적용이 안되네..
      	
 		chain.doFilter(request, response);
 	}

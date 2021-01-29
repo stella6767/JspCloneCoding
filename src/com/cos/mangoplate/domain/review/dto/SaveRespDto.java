@@ -14,5 +14,6 @@ public class SaveRespDto { //유저네임 추가 조인활용
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private String username;
+	private int sessionId; //추가
 	
 }

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import com.cos.mangoplate.domain.board.Board;
 import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.domain.board.dto.MapDto;
+import com.cos.mangoplate.domain.review.dto.SaveReqDto;
 import com.cos.mangoplate.domain.review.dto.SaveRespDto;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
@@ -61,9 +62,8 @@ public class BoardController extends HttpServlet {
 			List<Board> boards = boardService.전체글목록보기();			
 			//request.setAttribute("boards", boards);
 			
-////			String userUpdate = (String) session.getAttribute("userUpdate");
-////			System.out.println("되나?" + userUpdate);
-//			
+			String userUpdate = (String) request.getAttribute("userUpdate");
+		
 //			if(userUpdate != null) {
 //				//session.removeAttribute("userUpdate");
 //				//request.setAttribute("userUpdate", userUpdate);			
@@ -134,13 +134,14 @@ public class BoardController extends HttpServlet {
 			
 			Board board = boardService.글상세보기(id);
 			List<SaveRespDto> reviews = reviewService.리뷰목록보기(id);
+
 			
 			if(board == null) {
 				Script.back(response, "상세보기에 실패하였습니다.");
 				
 			}else {
 				request.setAttribute("board", board);
-				request.setAttribute("review",reviews);
+				request.setAttribute("reviews",reviews);
 				
 				RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
 				dis.forward(request, response);				
@@ -209,7 +210,6 @@ public class BoardController extends HttpServlet {
 			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
 			dis.forward(request, response);	
 		}
-		
 		
 		
 		

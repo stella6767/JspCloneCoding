@@ -2,8 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 
+<c:set var="reviewLength" value="${fn:length(reviews)}" />
 
 <!--============================= BOOKING =============================-->
 <div>
@@ -57,21 +59,26 @@
 			</div>
 			<div class="col-md-6">
 				<div class="reserve-seat-block">
+					
+					<c:if test="${not empty sessionScope.principal.id }">
 
-					<div class="reserve-btn mt-1">
-						<form action="/mangoplate/review?cmd=saveForm" method="POST">	
-							<input type="hidden" name="title" value="${board.title}" />
-							<input type="hidden" name="boardId" value="${board.id}" />		 
-							  <button class="btn waves-effect waves-light" type="submit" name="action">				  	
-	    						<i class="material-icons right">create</i>
-	    							<h7 class="mb-1">리뷰쓰기</h7>
-	  							</button>
-						</form>
-						
-					</div>
-					<div class="review-btn mt-2">
-						<i class="large material-icons">star_border</i>
-					</div>
+	   					<div class="reserve-btn mt-1">
+							<form action="/mangoplate/review?cmd=saveForm" method="POST">	
+								<input type="hidden" name="title" value="${board.title}" />
+								<input type="hidden" name="boardId" value="${board.id}" />		 
+								  <button class="btn waves-effect waves-light" type="submit" name="action">				  	
+		    						<i class="material-icons right">create</i>
+		    							<h7 class="mb-1">리뷰쓰기</h7>
+		  							</button>
+							</form>
+							
+						</div>
+						<div class="review-btn mt-1">
+							<i class="large material-icons">star_border</i>
+						</div>
+		
+					</c:if>
+					
 				</div>
 			</div>
 		</div>
@@ -146,45 +153,48 @@
 				
 				
 				<div class="booking-checkbox_wrap mt-4">
-					<h5>34 Reviews</h5>
+					<h5>${reviewLength} Reviews</h5>
 					<hr>
 					
 					
-				<%-- 	<c:forEach> --%>
+					<c:forEach var="review" items="${reviews}" varStatus="status">
 					
-						<div class="customer-review_wrap">
+						<div class="customer-review_wrap addReview">
 							<div class="customer-img">
-								<img src="<%=request.getContextPath()%>/images/customer-img1.jpg" class="img-fluid" alt="#">
-								<p>Amanda G</p>
-								<span>35 Reviews</span>
+			
+								<p>${review.username}</p>
+								
+								<div class="mt-5">
+									<c:if test="${sessionScope.principal.id == review.userId}">
+										<a href="/mangoplate/review?cmd=updateForm&id=${review.id}&boardTitle=${board.title}" class="btn default" style="font-size: 5px;">수정</a>
+										<button class="btn default " onClick="deleteReview(${review.id})" style="font-size: 5px;">삭제</button>
+									</c:if>
+								</div>
 							</div>
 							<div class="customer-content-wrap">
 								<div class="customer-content">
 									<div class="customer-review">
-										<h6>Best noodles in the Newyork city</h6>
-										<span></span> <span></span> <span></span> <span></span> <span class="round-icon-blank"></span>
-										<p>2012-2-15</p>
+										<h6>${review.title}</h6>
+										
+										<p>${review.createDate}</p>
 									</div>
 									
 								</div>
-								<p class="customer-text">I love the noodles .</p>
+								<p class="customer-text">${review.content}</p>
 								
-								<ul>
-									<li><img src="<%=request.getContextPath()%>/images/review-img1.jpg" class="img-fluid" alt="#"></li>
-	
-								</ul>
-							</div>
+								
+							</div>												
 						</div>
-						<hr>
-						<div class="justify-content-center align-items-center d-flex">
-							<i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
-						</div>
-						
+						<hr>		
 					
-					
-			<%-- 	</c:forEach>	 --%>
+				</c:forEach>
+				<div class="justify-content-center align-items-center d-flex">
+							<button class="btn-more" onclick ="moreReview(${board.id}, ${sessionScope.principal.id} )"><i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i></button>
+							
+						</div>	 
 					
 				</div>
+			
 
 
 			</div>
@@ -211,7 +221,7 @@ String addr = board.getAddr();
 <%@ include file="../layout/footer.jsp"%>
 
 <script>
-
+	//ctrl+shift+f 해서 정렬하면 중간에 자바 구문들도 같이 적용되기 때문에 구문 망가진다. 귀찮아서 그냥 둠
 	var title = '<%=title%>';
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -254,12 +264,17 @@ String addr = board.getAddr();
 		// 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
 		infowindow.close();
 	});
+
+
+	
+
+	
 </script>
 
 <script src="<%=request.getContextPath()%>/js/jquery.magnific-popup.js"></script>
 <script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
 <script src="<%=request.getContextPath()%>/js/swiper2.js"></script>
-
+<script src="<%=request.getContextPath()%>/js/reviewDetail.js"></script>
 
 
 

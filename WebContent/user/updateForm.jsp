@@ -21,7 +21,7 @@
 							<label for="email"><i class="material-icons">email</i></label> <input type="email" name="email" placeholder="${sessionScope.principal.email}" value="${sessionScope.principal.email}" />
 						</div>
 						<div class="form-group">
-							<label for="pass"><i class="material-icons">lock</i></label> <input type="password" name="password" placeholder="${sessionScope.principal.password}" value="${sessionScope.principal.password}" />
+							<label for="pass"><i class="material-icons">lock</i></label> <input type="password" name="password" value="${sessionScope.principal.password }" />
 						</div>
 
 						<div class="form-group">

@@ -1043,5 +1043,15 @@ hr {
 	
 }
 
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 0px 0px;
+  font-size: 0px;
+  cursor: pointer;
+  display: inline-block;
+}
+.btn:hover {background: #eee;}
+
 
 /*# sourceMappingURL=style.css.map */
