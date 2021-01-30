@@ -73,10 +73,11 @@
 							</form>
 							
 						</div>
-						<div class="review-btn mt-1">
-							<i class="large material-icons">star_border</i>
-						</div>
-		
+						<button class="btn emptybtn" onclick="like(${board.id})">
+							<div class="review-btn mt-1">
+								<i class="large material-icons">star_border</i>
+							</div>
+						</button>
 					</c:if>
 					
 				</div>
@@ -189,7 +190,7 @@
 					
 				</c:forEach>
 				<div class="justify-content-center align-items-center d-flex">
-							<button class="btn-more" onclick ="moreReview(${board.id}, ${sessionScope.principal.id} )"><i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i></button>
+							<button class="btn-more" onclick ="moreReview(${board.id}, ${principal.id})"><i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i></button>
 							
 						</div>	 
 					
@@ -219,6 +220,76 @@ String addr = board.getAddr();
 
 
 <%@ include file="../layout/footer.jsp"%>
+
+
+<script>
+
+function like(boardId) {
+	
+	
+	 $.ajax({
+		url: "/mangoplate/star?cmd=save&boardId="+boardId,
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+		
+	}).done(function(result) {
+		
+		addStar(result);
+		
+	}); 
+}
+
+function addStar(result){
+	
+	var boardId = result.boardId;
+	console.log(boardId);
+	
+	var addStar = `<button class="btn likebtn" onclick="dislike(${boardId})"><div class="review-btn mt-1"><i class="large material-icons">star</i></div></button>`;
+	
+	console.log(result);
+	
+	$(".emptybtn").replaceWith(addStar);
+	
+	
+}
+
+function dislike(){
+	console.log("dislike");
+	
+	 $.ajax({
+			url: "/mangoplate/star?cmd=delete&boardId="+boardId,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+			
+		}).done(function(result) {
+			
+			emptyStar(result);
+			
+		}); 
+	
+}
+
+function emptyStar(result){
+	
+	var emptyStar = `<button class="btn emptybtn" onclick="like(${result.boardId})"><div class="review-btn mt-1"><i class="large material-icons">star_border</i></div></button>`;
+	
+	console.log(result);
+	
+	$(".likebtn").replaceWith(emptyStar);
+	
+	
+}
+
+</script>
+
+
+
+
+
+
+
+
+
 
 <script>
 	//ctrl+shift+f 해서 정렬하면 중간에 자바 구문들도 같이 적용되기 때문에 구문 망가진다. 귀찮아서 그냥 둠

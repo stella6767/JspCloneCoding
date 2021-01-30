@@ -124,7 +124,7 @@
 	var jsonBoards = '<%=jsonData%>';  //외부로 분리된 자바스크립트 파일은 jsp 변수를 직접 사용할 수 없다.. 이렇게 하는 게 최선...
 	
 </script> 
-
+	
 	<script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
 	<script src="<%=request.getContextPath()%>/js/addList.js"></script>
 	<script src="<%=request.getContextPath()%>/js/kakaoMapApi.js"></script> 

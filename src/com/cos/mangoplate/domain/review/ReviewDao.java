@@ -7,11 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cos.mangoplate.config.DB;
-import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.domain.review.dto.SaveReqDto;
 import com.cos.mangoplate.domain.review.dto.SaveRespDto;
-import com.cos.mangoplate.domain.review.dto.TestReviewDto;
 import com.cos.mangoplate.domain.review.dto.UpdateReqDto;
+
 
 
 public class ReviewDao {
@@ -215,7 +214,7 @@ public class ReviewDao {
 	
 	
 	
-	public int save(SaveReqDto dto) {// 회원가입
+	public int save(SaveReqDto dto) {
 		String sql = "INSERT INTO review(boardId, title, userId, content, createDate) VALUES (?,?,?,?, now())";
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
