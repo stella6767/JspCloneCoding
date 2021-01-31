@@ -57,5 +57,9 @@ public class BoardService {
 	public List<Board> 전체글목록보기(){
 		return boardDao.findAll();
 	}
+	
+	public List<Board> 찜한목록보기(int userId){
+		return boardDao.findByStar(userId);
+	}
 
 }

@@ -50,36 +50,49 @@
 				</p>
 
 				<ul class="reserve-description d-flex list-unstyled pt-3">
-					<li><i class="material-icons">remove_red_eye</i> </li>
+					<li><i class="material-icons">remove_red_eye</i></li>
 					<li class="text=muted mt-1 ml-2" style="font-size: 5px;">${board.readCount}</li>
-					<li class="ml-2"><i class="material-icons">star</i></li>
+					
 				</ul>
 
 
 			</div>
 			<div class="col-md-6">
 				<div class="reserve-seat-block">
-					
+
 					<c:if test="${not empty sessionScope.principal.id }">
 
-	   					<div class="reserve-btn mt-1">
-							<form action="/mangoplate/review?cmd=saveForm" method="POST">	
-								<input type="hidden" name="title" value="${board.title}" />
-								<input type="hidden" name="boardId" value="${board.id}" />		 
-								  <button class="btn waves-effect waves-light" type="submit" name="action">				  	
-		    						<i class="material-icons right">create</i>
-		    							<h7 class="mb-1">리뷰쓰기</h7>
-		  							</button>
+						<div class="reserve-btn mt-1">
+							<form action="/mangoplate/review?cmd=saveForm" method="POST">
+								<input type="hidden" name="title" value="${board.title}" /> <input type="hidden" name="boardId" value="${board.id}" />
+								<button class="btn waves-effect waves-light" type="submit" name="action">
+									<i class="material-icons right">create</i>
+									<h7 class="mb-1">리뷰쓰기</h7>
+								</button>
 							</form>
-							
+
 						</div>
-						<button class="btn emptybtn" onclick="like(${board.id})">
-							<div class="review-btn mt-1">
-								<i class="large material-icons">star_border</i>
-							</div>
-						</button>
+						<c:choose>
+							<c:when test="${board.likeStar ne 1}">
+								<button class="btn m-star-btn" onclick="like(${board.id})">
+									<div class="review-btn mt-1">
+										<i class="large material-icons m-star">star_border</i>
+									</div>
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button class="btn m-star-btn" onclick="dislike(${board.id})">
+									<div class="review-btn mt-1">
+										<i class="large material-icons m-star">star</i>
+									</div>
+								</button>
+							</c:otherwise>
+						</c:choose>
+
+
+
 					</c:if>
-					
+
 				</div>
 			</div>
 		</div>
@@ -150,21 +163,21 @@
 						<div class="font-italic">${board.foodDesc}</div>
 					</div>
 				</div>
-				
-				
-				
+
+
+
 				<div class="booking-checkbox_wrap mt-4">
-					<h5>${reviewLength} Reviews</h5>
+					<h5>${reviewLength}Reviews</h5>
 					<hr>
-					
-					
+
+
 					<c:forEach var="review" items="${reviews}" varStatus="status">
-					
+
 						<div class="customer-review_wrap addReview">
 							<div class="customer-img">
-			
+
 								<p>${review.username}</p>
-								
+
 								<div class="mt-5">
 									<c:if test="${sessionScope.principal.id == review.userId}">
 										<a href="/mangoplate/review?cmd=updateForm&id=${review.id}&boardTitle=${board.title}" class="btn default" style="font-size: 5px;">수정</a>
@@ -176,26 +189,28 @@
 								<div class="customer-content">
 									<div class="customer-review">
 										<h6>${review.title}</h6>
-										
+
 										<p>${review.createDate}</p>
 									</div>
-									
+
 								</div>
 								<p class="customer-text">${review.content}</p>
-								
-								
-							</div>												
+
+
+							</div>
 						</div>
-						<hr>		
-					
-				</c:forEach>
-				<div class="justify-content-center align-items-center d-flex">
-							<button class="btn-more" onclick ="moreReview(${board.id}, ${principal.id})"><i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i></button>
-							
-						</div>	 
-					
+						<hr>
+
+					</c:forEach>
+					<div class="justify-content-center align-items-center d-flex">
+						<button class="btn-more" onclick="moreReview(${board.id}, ${principal.id})">
+							<i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
+						</button>
+
+					</div>
+
 				</div>
-			
+
 
 
 			</div>
@@ -224,61 +239,6 @@ String addr = board.getAddr();
 
 <script>
 
-function like(boardId) {
-	
-	
-	 $.ajax({
-		url: "/mangoplate/star?cmd=save&boardId="+boardId,
-		contentType: "application/json; charset=utf-8",
-		dataType: "json"
-		
-	}).done(function(result) {
-		
-		addStar(result);
-		
-	}); 
-}
-
-function addStar(result){
-	
-	var boardId = result.boardId;
-	console.log(boardId);
-	
-	var addStar = `<button class="btn likebtn" onclick="dislike(${boardId})"><div class="review-btn mt-1"><i class="large material-icons">star</i></div></button>`;
-	
-	console.log(result);
-	
-	$(".emptybtn").replaceWith(addStar);
-	
-	
-}
-
-function dislike(){
-	console.log("dislike");
-	
-	 $.ajax({
-			url: "/mangoplate/star?cmd=delete&boardId="+boardId,
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-			
-		}).done(function(result) {
-			
-			emptyStar(result);
-			
-		}); 
-	
-}
-
-function emptyStar(result){
-	
-	var emptyStar = `<button class="btn emptybtn" onclick="like(${result.boardId})"><div class="review-btn mt-1"><i class="large material-icons">star_border</i></div></button>`;
-	
-	console.log(result);
-	
-	$(".likebtn").replaceWith(emptyStar);
-	
-	
-}
 
 </script>
 
@@ -346,6 +306,7 @@ function emptyStar(result){
 <script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
 <script src="<%=request.getContextPath()%>/js/swiper2.js"></script>
 <script src="<%=request.getContextPath()%>/js/reviewDetail.js"></script>
+<script src="<%=request.getContextPath()%>/js/addStar.js"></script>
 
 
 

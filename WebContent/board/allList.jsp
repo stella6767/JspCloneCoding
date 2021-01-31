@@ -67,9 +67,9 @@
 								<div>
 									<h4>${num}.${board.title}${board.rate}</h4>
 								</div>
-								<div>
+<!-- 								<div>
 									<i class="large material-icons">star_border</i>
-								</div>
+								</div> -->
 							</div>
 
 							<div class="mt-2 text-muted">${board.addr}</div>

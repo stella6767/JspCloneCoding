@@ -19,8 +19,11 @@ import com.cos.mangoplate.domain.board.dto.AllListRespDto;
 import com.cos.mangoplate.domain.board.dto.MapDto;
 import com.cos.mangoplate.domain.review.dto.SaveReqDto;
 import com.cos.mangoplate.domain.review.dto.SaveRespDto;
+import com.cos.mangoplate.domain.star.dto.InsertReqDto;
+import com.cos.mangoplate.domain.user.User;
 import com.cos.mangoplate.service.BoardService;
 import com.cos.mangoplate.service.ReviewService;
+import com.cos.mangoplate.service.StarService;
 import com.cos.mangoplate.utill.Script;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -49,175 +52,184 @@ public class BoardController extends HttpServlet {
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String cmd = request.getParameter("cmd");	
+
+		String cmd = request.getParameter("cmd");
 		BoardService boardService = new BoardService();
 		ReviewService reviewService = new ReviewService();
+		StarService starService = new StarService();
+
 		HttpSession session = request.getSession();
-	
-		
-		if(cmd.equals("mainList")) {
-			
+
+		if (cmd.equals("mainList")) {
+
 			System.out.println("List page");
-			List<Board> boards = boardService.전체글목록보기();			
-			//request.setAttribute("boards", boards);
-			
+			List<Board> boards = boardService.전체글목록보기();
+
 			String userUpdate = (String) request.getAttribute("userUpdate");
-		
+
 //			if(userUpdate != null) {
 //				//session.removeAttribute("userUpdate");
 //				//request.setAttribute("userUpdate", userUpdate);			
-//			}
-			
-			
-			
-			//메뉴별 리스트
+//			}		
+
+			// 메뉴별 리스트
 			List<Board> breads = new ArrayList<>();
 			List<Board> hanwoos = new ArrayList<>();
 			List<Board> gukbabs = new ArrayList<>();
 			List<Board> noodles = new ArrayList<>();
-			
+
 			for (Board board : boards) {
-				if(board.getFoodDesc().contains("빵")) {
+				if (board.getFoodDesc().contains("빵")) {
 					breads.add(board);
 				}
-				
-				if(board.getFoodDesc().contains("한우")) {
+
+				if (board.getFoodDesc().contains("한우")) {
 					hanwoos.add(board);
 				}
-				
-				if(board.getFoodDesc().contains("국밥")) {
+
+				if (board.getFoodDesc().contains("국밥")) {
 					gukbabs.add(board);
 				}
-				if(board.getFoodDesc().contains("국수")) {
+				if (board.getFoodDesc().contains("국수")) {
 					noodles.add(board);
-				}							
+				}
 			}
-			
+
 			request.setAttribute("breads", breads);
 			request.setAttribute("hanwoos", hanwoos);
 			request.setAttribute("gukbabs", gukbabs);
 			request.setAttribute("noodles", noodles);
-			
-			
+
 			RequestDispatcher dis = request.getRequestDispatcher("board/mainList.jsp");
-			dis.forward(request, response);			
-		}else if(cmd.equals("allList")) {			
+			dis.forward(request, response);
+		} else if (cmd.equals("allList")) {
 			System.out.println("allList page");
-			
+
 			List<AllListRespDto> boards = boardService.맛집목록보기();
-			//List<MapDto> dtos = boardService.전체위치찾기();
-			
+			// List<MapDto> dtos = boardService.전체위치찾기();
+
 			String all = "all";
-			
-			request.setAttribute("boards", boards);		
+
+			request.setAttribute("boards", boards);
 			request.setAttribute("all", all);
 
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
-			dis.forward(request, response);	
-			
-		}else if(cmd.equals("moreContent")) {
+			dis.forward(request, response);
+
+		} else if (cmd.equals("moreContent")) {
 			System.out.println("ajax로 더보기버튼");
 			Gson gson = new Gson();
-					
+
 			int startNum = Integer.parseInt(request.getParameter("startNum"));
 			System.out.println(startNum);
-			
+
 			List<AllListRespDto> boards = boardService.목록더보기(startNum);
-			
-			String responseData = gson.toJson(boards); //제이슨화시켜주는건데 이미 boards가 자바오브젝트이므로 가능
-			Script.responseData(response, responseData);	
-		}else if(cmd.equals("detail")) {
+
+			String responseData = gson.toJson(boards); // 제이슨화시켜주는건데 이미 boards가 자바오브젝트이므로 가능
+			Script.responseData(response, responseData);
+		} else if (cmd.equals("detail")) {
 			System.out.println("detail page");
-			
+
 			int id = Integer.parseInt(request.getParameter("id"));
-			
+
+			int starCheck = starService.내용검색(id);
+			System.out.println("별이 이미 있는지 비교: " + starCheck);
+
+			if (starCheck == -1) {
+				InsertReqDto dto = new InsertReqDto();  //star 칼럼 추가
+				dto.setBoardId(id);
+				starService.칼럼추가(dto);
+			}
+
 			Board board = boardService.글상세보기(id);
 			List<SaveRespDto> reviews = reviewService.리뷰목록보기(id);
 
-			
-			if(board == null) {
+			if (board == null) {
 				Script.back(response, "상세보기에 실패하였습니다.");
-				
-			}else {
+
+			} else {
 				request.setAttribute("board", board);
-				request.setAttribute("reviews",reviews);
-				
+				request.setAttribute("reviews", reviews);
+
 				RequestDispatcher dis = request.getRequestDispatcher("board/detail.jsp");
-				dis.forward(request, response);				
+				dis.forward(request, response);
 			}
-			
-	
-		}else if(cmd.equals("subAllList")) {
+
+		} else if (cmd.equals("subAllList")) {
 			System.out.println("subAllList");
-			
+
 			String mkeyword = request.getParameter("mkeyword");
 			String gkeyword = request.getParameter("gkeyword");
 			int cnt = Integer.parseInt(request.getParameter("cnt"));
-			
-			System.out.println("키워드: "+mkeyword+gkeyword);
-			
-			if(gkeyword != null) {				
+
+			System.out.println("키워드: " + mkeyword + gkeyword);
+
+			if (gkeyword != null) {
 				List<AllListRespDto> boards = boardService.구군별맛집목록보기(gkeyword);
 				request.setAttribute("keyword", gkeyword);
 				request.setAttribute("cnt", cnt);
-				request.setAttribute("keyType","구군");
-				request.setAttribute("boards", boards);		
-				
-			}else {
-				List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(mkeyword);					
-				request.setAttribute("keyword", mkeyword);		
+				request.setAttribute("keyType", "구군");
+				request.setAttribute("boards", boards);
+
+			} else {
+				List<AllListRespDto> boards = boardService.메뉴별맛집목록보기(mkeyword);
+				request.setAttribute("keyword", mkeyword);
 				request.setAttribute("cnt", cnt);
 				request.setAttribute("keyType", "메뉴");
 				request.setAttribute("boards", boards);
-				
+
 			}
-			
-			
-			
+
 			RequestDispatcher dis = request.getRequestDispatcher("board/allList.jsp");
-			dis.forward(request, response);	
-			
-		}else if(cmd.equals("search")) {
+			dis.forward(request, response);
+
+		} else if (cmd.equals("search")) {
 			System.out.println("search");
 			String keyword = request.getParameter("keyword");
-			
+
 			int page = Integer.parseInt(request.getParameter("page"));
-			
+
 			System.out.println("키워드와 페이지:  " + keyword + "  " + page);
-			
-			List<AllListRespDto> boards = boardService.검색목록보기(keyword,page);
+
+			List<AllListRespDto> boards = boardService.검색목록보기(keyword, page);
 			int boardCount = boardService.글개수(keyword);
-			
+
 			int lastPage;
-			
-			if(boardCount%10 == 0) {
-				lastPage = ((boardCount)/10);		
-			}else {
-				lastPage = ((boardCount)/10)+1;
+
+			if (boardCount % 10 == 0) {
+				lastPage = ((boardCount) / 10);
+			} else {
+				lastPage = ((boardCount) / 10) + 1;
 			}
-			
-			
+
 			System.out.println("글개수: " + boardCount);
 			System.out.println("lastpage: " + lastPage);
-			
+
 			request.setAttribute("page", page);
 			request.setAttribute("keyword", keyword);
 			request.setAttribute("boards", boards);
 			request.setAttribute("lastpage", lastPage);
 			request.setAttribute("boardCount", boardCount);
-			
+
 			RequestDispatcher dis = request.getRequestDispatcher("board/searchList.jsp");
-			dis.forward(request, response);	
+			dis.forward(request, response);
+		}else if(cmd.equals("starMatzip")) {
+			System.out.println("찜 목록 보기");
+			
+			User user = (User) session.getAttribute("principal");
+			int userId = user.getId();
+			
+			List<Board> starBoards = boardService.찜한목록보기(userId);			
+			request.setAttribute("starBoards", starBoards);
+			
+			System.out.println(starBoards);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("starList.jsp");
+			dis.forward(request, response);			
+			
+			
 		}
-		
-		
-		
-		
-		
+
 	}
-	
-	
-	
-	
+
 }

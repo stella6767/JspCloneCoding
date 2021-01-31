@@ -14,6 +14,51 @@ import com.cos.mangoplate.domain.review.dto.TestReviewDto;
 
 public class BoardDao {
 	
+	public List<Board> findByStar(int userId) {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT m.* ");
+		sb.append("FROM matzip m inner join star s ");
+		sb.append("on m.id = s.boardId ");
+		sb.append("WHERE s.likeStar = 1 AND s.userId = ?");
+		String sql = sb.toString();	
+	  
+		Connection conn = DB.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Board> boards = new ArrayList<>();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userId);
+			rs = pstmt.executeQuery();
+			while (rs.next()) { // 커서를 이동하는 함수
+				
+				Board board = Board.builder()
+						.id(rs.getInt("id"))
+						.title(rs.getString("title"))
+						.addr(rs.getString("addr"))
+						.tel(rs.getString("tel"))
+						.url(rs.getString("url"))
+						.mainImg(rs.getString("mainimg"))
+						.build();
+				
+				boards.add(board);
+			}
+
+			return boards;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+
+		return null;
+	}
+	
+	
+	
+	
 	public List<TestReviewDto> findAll(int boardId){ //이거 잠깐만..
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT r.*, u.username ");
@@ -247,7 +292,7 @@ public class BoardDao {
 	
 	public Board findById(int id) {
 		
-		String sql = "SELECT * FROM matzip where id = ?";  
+		String sql = "SELECT m.*,s.likeStar FROM matzip m inner join star s ON m.id=s.boardId where m.id = ?";  
 		Connection conn = DB.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -259,7 +304,7 @@ public class BoardDao {
 			while (rs.next()) { // 커서를 이동하는 함수
 				
 				Board board = Board.builder()
-						.id(rs.getInt("id"))
+						.id(rs.getInt("m.id"))
 						.title(rs.getString("title"))
 						.gugun(rs.getString("gugun"))
 						.lat(rs.getDouble("lat"))
@@ -275,6 +320,7 @@ public class BoardDao {
 						.foodDesc(rs.getString("fooddesc"))
 						.rate(rs.getDouble("rate"))
 						.readCount(rs.getInt("readCount"))
+						.likeStar(rs.getInt("likeStar"))
 						.build();
 				
 				return board;

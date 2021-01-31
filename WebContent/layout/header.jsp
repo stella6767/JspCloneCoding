@@ -79,7 +79,12 @@
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=updateForm"> 회원정보</a></li>
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
 											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=logout">로그아웃</a></li>
-											<li><button class="btn default" ><i class="large material-icons text-white md-48 m-circle " >account_circle</i></button></li>
+											<li><form action="/mangoplate/board?cmd=starMatzip" method="POST" >
+
+													<button class="btn default" type="submit">
+														<i class="large material-icons text-white md-48 m-circle ">account_circle</i>
+													</button></li>
+											</form>
 										</ul>
 									</c:when>
 									<c:otherwise>
@@ -87,7 +92,13 @@
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=joinForm"> 회원가입</a></li>
 											<li class="nav-item active"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/board?cmd=allList">맛집리스트</a></li>
 											<li class="nav-item"><a class="nav-link font-weight-bold" href="<%=request.getContextPath()%>/user?cmd=loginForm">로그인</a></li>
-											<li><button class="btn default" ><i class="large material-icons text-white md-48 m-circle " >account_circle</i></button></li>
+											<li>
+												<form action="/mangoplate/board?cmd=starMatzip" method="POST" >
+													<button class="btn default" type="submit">
+														<i class="large material-icons text-white md-48 m-circle ">account_circle</i>
+													</button>
+											</li>
+											</form>
 										</ul>
 									</c:otherwise>
 								</c:choose>
@@ -101,4 +112,22 @@
 	</div>
 
 	<!--//END HEADER -->
-	
+
+	<script>
+		function StarData() {
+
+			$.ajax({
+				url : "/mangoplate/board?cmd=starMatzip"
+
+			}).done(function(result) {
+
+			});
+
+			/* 			console.log(starBoards);
+			
+			 var url = "popup.jsp";
+			 var name = "찜한 맛집정보들";
+			 var option = "width = 500, height = 500, top = 100, left = 500, location = no"
+			 window.open(url, name, option); */
+		}
+	</script>

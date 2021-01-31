@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cos.mangoplate.domain.star.dto.SaveReqDto;
+import com.cos.mangoplate.domain.star.dto.InsertReqDto;
+import com.cos.mangoplate.domain.star.dto.UpdateReqDto;
 import com.cos.mangoplate.domain.user.User;
 import com.cos.mangoplate.service.StarService;
 import com.cos.mangoplate.utill.Script;
@@ -42,19 +43,19 @@ public class StarController extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		if (cmd.equals("save")) {
+		if (cmd.equals("update")) {
 
 			Gson gson = new Gson();
 			User user = (User) session.getAttribute("principal");
-
 			int userId = user.getId();
+			
 			int boardId = Integer.parseInt(request.getParameter("boardId"));
 
-			SaveReqDto dto = new SaveReqDto();
-
+			UpdateReqDto dto = new UpdateReqDto();
+			
 			dto.setUserId(userId);
 			dto.setBoardId(boardId);
-
+			
 			System.out.println(dto);
 			int result = starService.찜하기(dto);
 
@@ -67,28 +68,27 @@ public class StarController extends HttpServlet {
 				Script.back(response, "찜하기에 실패하였습니다.");
 			}
 
-		} else if (cmd.equals("delete")) {
+		} else if (cmd.equals("cancel")) {
 
 			Gson gson = new Gson();
 			User user = (User) session.getAttribute("principal");
 
 			int userId = user.getId();
 			int boardId = Integer.parseInt(request.getParameter("boardId"));
-
-			SaveReqDto dto = new SaveReqDto();
-
+			
+			UpdateReqDto dto = new UpdateReqDto();
+			
 			dto.setUserId(userId);
 			dto.setBoardId(boardId);
-
+			
 			int result = starService.찜취소(dto);
-
 			String data = gson.toJson(dto); // 무조건 json 데이터로 바꿔서 보내야지 ajax done 실행..
 
 			if (result == 1) {
 				Script.responseData(response, data);
 
 			} else {
-				Script.back(response, "찜하기에 실패하였습니다.");
+				Script.back(response, "찜취소에 실패하였습니다.");
 			}
 
 		}

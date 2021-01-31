@@ -1,15 +1,6 @@
-package com.cos.mangoplate.domain.board;
+package com.cos.mangoplate.domain.board.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-public class Board {
+public class BoardDetailDto { //귀찮으니까 dTO 새로 만들긴 했는데 쓰지는 않고. 그냥 Board model에서 추가..
 	
 	private int id;
 	private String title;
@@ -27,6 +18,4 @@ public class Board {
 	private String foodDesc;
 	private double rate;
 	private int readCount; //조회수 
-	private int likeStar; //찜하기
-	
 }
