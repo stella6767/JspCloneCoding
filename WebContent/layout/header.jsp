@@ -112,22 +112,3 @@
 	</div>
 
 	<!--//END HEADER -->
-
-	<script>
-		function StarData() {
-
-			$.ajax({
-				url : "/mangoplate/board?cmd=starMatzip"
-
-			}).done(function(result) {
-
-			});
-
-			/* 			console.log(starBoards);
-			
-			 var url = "popup.jsp";
-			 var name = "찜한 맛집정보들";
-			 var option = "width = 500, height = 500, top = 100, left = 500, location = no"
-			 window.open(url, name, option); */
-		}
-	</script>
