@@ -1,8 +1,7 @@
 
 $(function() {
+	
 
-
-	//console.log(jsonBoards);
 
 	//오류 있는 제이슨 데이터 파싱
 	jsonBoards = jsonBoards.replaceAll("\n", ""); //엔터 오류 해결!!!

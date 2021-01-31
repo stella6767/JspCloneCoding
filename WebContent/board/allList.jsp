@@ -2,7 +2,8 @@
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.cos.mangoplate.domain.board.Board"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -15,9 +16,9 @@
 		<fmt:formatDate value="${now}" pattern="yyyy" />
 	</c:set>
 
-	
+
 	<c:set var="endValue" value="${fn:length(boards)}" />
-	
+
 	<c:if test="${all eq 'all'}">
 		<c:set var="endValue" value="9" />
 	</c:if>
@@ -51,15 +52,21 @@
 
 
 	<section class="main-block">
-		<div class="container" style="padding-left: 100px; padding-right: 100px;" id="m-list-container">
+		<div class="container"
+			style="padding-left: 100px; padding-right: 100px;"
+			id="m-list-container">
 
 
 			<div id="m-list">
-				<c:forEach var="board" items="${boards}" varStatus="status" begin="0" end="${endValue}">
+				<c:forEach var="board" items="${boards}" varStatus="status"
+					begin="0" end="${endValue}">
 					<c:set var="num" value="${num + 1}" />
-					<div class="d-flex justify-content-center border-bottom py-4 board-item">
+					<div
+						class="d-flex justify-content-center border-bottom py-4 board-item">
 						<div>
-							<a href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}"> <img src="${board.mainImg}" class="m-listImg-box" alt="img13" />
+							<a
+								href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
+								<img src="${board.mainImg}" class="m-listImg-box" alt="img13" />
 							</a>
 						</div>
 						<div class="ml-5">
@@ -67,7 +74,7 @@
 								<div>
 									<h4>${num}.${board.title}${board.rate}</h4>
 								</div>
-<!-- 								<div>
+								<!-- 								<div>
 									<i class="large material-icons">star_border</i>
 								</div> -->
 							</div>
@@ -75,7 +82,11 @@
 							<div class="mt-2 text-muted">${board.addr}</div>
 							<div class="mt-3">${board.foodDesc}</div>
 							<div class="mt-5 d-flex  justify-content-end">
-								<a class="nav-link font-weight-bold text-muted" href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}"> ${board.title} 더보기 </a> <a class="text-muted" href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}"> <i class="material-icons " style="margin-top: 15px">chevron_right</i>
+								<a class="nav-link font-weight-bold text-muted"
+									href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
+									${board.title} 더보기 </a> <a class="text-muted"
+									href="<%=request.getContextPath()%>/board?cmd=detail&id=${board.id}">
+									<i class="material-icons " style="margin-top: 15px">chevron_right</i>
 								</a>
 							</div>
 						</div>
@@ -88,7 +99,8 @@
 			<c:if test="${all eq 'all'}">
 				<div class="justify-content-center align-items-center d-flex mt-2">
 					<button class="btn-more text-dark" onclick="moreContent()">
-						<i class="large material-icons">arrow_drop_down</i> <i class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
+						<i class="large material-icons">arrow_drop_down</i> <i
+							class="mx-2"> 더보기 </i> <i class="large material-icons">arrow_drop_down</i>
 					</button>
 				</div>
 			</c:if>
@@ -103,31 +115,26 @@
 
 		</div>
 
-
-
-
-
 	</section>
 
+	<%
+		List<Board> newBoards = (List<Board>) request.getAttribute("boards");
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(newBoards);
+	%>
+	
 
- 			<%
-				List<Board> newBoards = (List<Board>) request.getAttribute("boards");
- 				Gson gson = new Gson();
- 				String jsonData = gson.toJson(newBoards);
-			%>
- 			
 
 
 	<%@ include file="../layout/footer.jsp"%>
 <script>
-
 	var jsonBoards = '<%=jsonData%>';  //외부로 분리된 자바스크립트 파일은 jsp 변수를 직접 사용할 수 없다.. 이렇게 하는 게 최선...
 	
 </script> 
-	
+
 	<script src="<%=request.getContextPath()%>/js/subHeader.js"></script>
 	<script src="<%=request.getContextPath()%>/js/addList.js"></script>
-	<script src="<%=request.getContextPath()%>/js/kakaoMapApi.js"></script> 
+    <script src="<%=request.getContextPath()%>/js/kakaoMapApi.js"></script> 
 
 
 </body>

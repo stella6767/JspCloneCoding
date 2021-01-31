@@ -1,6 +1,6 @@
-## 클론코딩
+## 클론코딩 개인 프로젝트(부산시 한정 망고플레이트 구현)
 
-**부산시 한정 망고플레이트 구현** 
+**데이터베이스 구현** 
 
 
 ```
@@ -28,18 +28,38 @@ create table matzip(
     readCount int DEFAULT 0
 );
 
+CREATE TABLE user(
+    id int primary key auto_increment,
+    username varchar(100) not null unique,
+    password varchar(100) not null,
+    email varchar(100) not null,
+    userRole varchar(20),
+    createDate timestamp
+) engine=InnoDB default charset=utf8;
+
+
+CREATE TABLE review(
+    id int primary key auto_increment,
+    userId int,
+    boardId int,
+    title varchar(200) not null,
+    content varchar(1000) not null,
+    createDate timestamp,
+    updateDate timestamp
+) engine=InnoDB default charset=utf8;
+
+
+CREATE TABLE star(
+    id int primary key auto_increment,
+    userId int,
+    boardId int,
+    likeStar int default 0
+) engine=InnoDB default charset=utf8;
+
 ```
 
 
-```
-메뉴별 맛집..
-해산물
-밀면
-족발 앤 보쌈
-백숙
-일식
-만두
 
 
-```
+
 
